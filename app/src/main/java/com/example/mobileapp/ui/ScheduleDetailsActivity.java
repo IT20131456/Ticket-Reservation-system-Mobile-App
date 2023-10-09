@@ -35,12 +35,12 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         TrainSchedule selectedSchedule = getIntent().getParcelableExtra("schedule");
 
         // Display schedule details
-        startingPointTextView.setText("Starting Point: " + selectedSchedule.getStartingPoint());
-        destinationTextView.setText("Destination: " + selectedSchedule.getDestination());
-        availableClassesTextView.setText("Available Classes: " + selectedSchedule.getAvailableClasses());
-        stationsTextView.setText("Stations: " + selectedSchedule.getStations());
-        departureTimeTextView.setText("Departure: " + selectedSchedule.getDepartureTime());
-        arrivalTimeTextView.setText("Arrival Time: " + selectedSchedule.getArrivalTime());
+        startingPointTextView.setText("Starting Point: " + selectedSchedule.getDeparture_station());
+        destinationTextView.setText("Destination: " + selectedSchedule.getArrival_station());
+        availableClassesTextView.setText("Available Classes: " + selectedSchedule.getSeat_classes());
+        stationsTextView.setText("Stations: " + selectedSchedule.getIntermediate_stops());
+        departureTimeTextView.setText("Departure: " + selectedSchedule.getDeparture_time());
+        arrivalTimeTextView.setText("Arrival Time: " + selectedSchedule.getArrival_time());
 
         // Handle the "Book" button click event
         bookButton.setOnClickListener(new View.OnClickListener() {
