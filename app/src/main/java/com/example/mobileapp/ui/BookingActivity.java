@@ -35,8 +35,8 @@ public class BookingActivity extends AppCompatActivity {
 
         // Display schedule details
         scheduleDetailsTextView.setText("Schedule Details:\n" +
-                        "Starting Point: " + selectedSchedule.getStartingPoint() + "\n" +
-                        "Destination: " + selectedSchedule.getDestination() + "\n"
+                        "Starting Point: " + selectedSchedule.getDeparture_station() + "\n" +
+                        "Destination: " + selectedSchedule.getArrival_station() + "\n"
                 // TODO: Display other details similarly
         );
 

@@ -39,8 +39,8 @@ public class ScheduleAdapter extends ArrayAdapter<TrainSchedule> {
         // Add more TextViews for other schedule details as needed
 
         // Set the data from the TrainSchedule object into the TextViews
-        trainNameTextView.setText("Train Name: " + schedule.getTrainName());
-        departureTimeTextView.setText("Departure Time: " + schedule.getDepartureTime());
+        trainNameTextView.setText("Train Name: " + schedule.getTrain_name());
+        departureTimeTextView.setText("Departure Time: " + schedule.getDeparture_time());
         // Populate other TextViews similarly
 
         return convertView;
