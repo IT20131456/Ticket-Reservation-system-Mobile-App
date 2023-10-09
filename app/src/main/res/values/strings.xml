@@ -21,6 +21,7 @@
     <string name="go_to_login_temp">Go to Login</string>
     <string name="login_activity_temp">Login Activity</string>
     <string name="login_temp">Login</string>
+    <string name="register_temp">Register</string>
     <string name="all_schedules_layout_temp">All Schedules Layout</string>
     <string name="view_all_schedules_temp">View All Schedules</string>
 
