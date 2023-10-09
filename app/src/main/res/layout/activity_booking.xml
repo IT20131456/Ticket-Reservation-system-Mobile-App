@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/scheduleDetailsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/schedule_details_temp"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/bookingNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/user_name_temp"
+        android:autofillHints="name"
+        android:layout_below="@id/scheduleDetailsTextView"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/bookingEmailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_address_temp"
+        android:autofillHints="emailAddress"
+        android:layout_below="@id/bookingNameEditText"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:inputType="numberSigned"
+        android:id="@+id/bookingSeatNumberEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/number_of_seats"
+        android:layout_below="@id/bookingEmailEditText"
+        android:layout_marginTop="16dp" />
+
+    <LinearLayout
+        android:id="@+id/bookingButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/bookingSeatNumberEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/bookingBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_temp"
+            android:layout_gravity="start" />
+
+        <Button
+            android:id="@+id/bookingContinueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/continue_temp"
+            android:layout_gravity="end" />
+    </LinearLayout>
+
+</RelativeLayout>
