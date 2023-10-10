@@ -2,7 +2,7 @@
     <string name="app_name">MobileApp</string>
 
     <!--    Strings used only for testing purposes-->
-    <string name="train_name_temp">Train Name: Temporary Value</string>
+    <string name="train_name_temp">Train: Temporary Value</string>
     <string name="departure_time_temp">Departure Time: Temporary Value</string>
     <string name="schedule_details_temp">Schedule Details: \nStarting Point: Temporary Value</string>
     <string name="number_of_seats">Number of Seats</string>
@@ -10,19 +10,21 @@
     <string name="email_address_temp">Email Address</string>
     <string name="back_temp">Back</string>
     <string name="continue_temp">Continue</string>
-    <string name="starting_point_temporary_value">Starting Point: Temporary Value</string>
-    <string name="destination_temporary_value">Destination: Temporary Value</string>
-    <string name="available_classes_temporary_value">Available Classes: Temporary Value</string>
-    <string name="stations_temporary_value">Stations: Temporary Value</string>
-    <string name="departure_time_temporary_value">Departure Time: Temporary Value</string>
-    <string name="arrival_time_temporary_value">Arrival Time: Temporary Value</string>
-    <string name="book_temp">Book</string>
+    <string name="train_type_temp_value">Type: </string>
+    <string name="train_description_temp_value">Description: </string>
+    <string name="starting_point_temporary_value">From: </string>
+    <string name="destination_temporary_value">To: </string>
+    <string name="available_classes_temporary_value">Classes: </string>
+    <string name="stations_temporary_value">Stops: </string>
+    <string name="duration_temporary_value">Duration: </string>
+    <string name="available_seats_temp_value">Seats: </string>
+    <string name="book_temp">Reserve</string>
     <string name="ticket_reservation_app_temp">Ticket Reservation App</string>
     <string name="go_to_login_temp">Go to Login</string>
     <string name="login_activity_temp">Login Activity</string>
     <string name="login_temp">Login</string>
     <string name="register_temp">Register</string>
-    <string name="all_schedules_layout_temp">All Schedules Layout</string>
+    <string name="all_schedules_layout_temp">Available Schedules</string>
     <string name="view_all_schedules_temp">View All Schedules</string>
 
 </resources>

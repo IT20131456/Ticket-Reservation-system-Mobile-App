@@ -1,7 +1,12 @@
 package com.example.mobileapp.ui;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.mobileapp.R;
@@ -26,6 +31,7 @@ public class AllSchedulesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_schedules);
 
         scheduleListView = findViewById(R.id.scheduleListView);
+        Button backButton = findViewById(R.id.schedulesBackButton);
 
         // Initialize Retrofit
         Retrofit retrofit = new Retrofit.Builder()
@@ -50,6 +56,20 @@ public class AllSchedulesActivity extends AppCompatActivity {
                     adapter = new ScheduleAdapter(AllSchedulesActivity.this, R.layout.list_item_schedule, scheduleList);
                     scheduleListView.setAdapter(adapter);
 
+                    scheduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            // Get the selected TrainSchedule
+                            TrainSchedule selectedSchedule = scheduleList.get(position);
+
+                            // Create an Intent to navigate to ScheduleActivity
+                            Intent intent = new Intent(AllSchedulesActivity.this, ScheduleDetailsActivity.class);
+                            // Pass selected schedule data to ScheduleActivity
+                            intent.putExtra("schedule", selectedSchedule);
+                            startActivity(intent);
+                        }
+                    });
+
                 } else {
                     Log.i("TrainInfo", "Failed Case");
                     // Handle error if the API call was not successful
@@ -62,6 +82,13 @@ public class AllSchedulesActivity extends AppCompatActivity {
                 Log.i("TrainInfo", "On failure: " + t.getMessage());
                 // Handle failure to make the API call
                 // You can display an error message or take appropriate action here
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
