@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
-    <LinearLayout
-        android:id="@+id/scheduleDetailsButtonLayout"
+    <Button
+        android:id="@+id/schedulesBackButton"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/back_temp" />
+
+    <TextView
+        android:id="@+id/allSchedulesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp">
+        android:layout_below="@id/schedulesBackButton"
+        android:layout_marginBottom="16dp"
+        android:text="@string/all_schedules_layout_temp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
 
-        <Button
-            android:id="@+id/schedulesBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/back_temp"
-            android:layout_marginRight="20dp"
-            android:layout_gravity="start"/>
-
-        <TextView
-            android:id="@+id/allSchedulesTitle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/all_schedules_layout_temp"
-            android:layout_gravity="end"
-            />
-
-    </LinearLayout>
+    <SearchView
+        android:id="@+id/schedulesSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/allSchedulesTitle" />
 
     <ListView
         android:id="@+id/scheduleListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/scheduleDetailsButtonLayout" />
+        android:layout_below="@id/schedulesSearchView" />
 
 </RelativeLayout>

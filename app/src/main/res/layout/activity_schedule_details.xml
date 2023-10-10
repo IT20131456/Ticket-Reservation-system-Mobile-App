@@ -1,90 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
-
-    <TextView
-        android:id="@+id/scheduleDetailsStartingPointTextView"
+    <Button
+        android:id="@+id/scheduleDetailsBackButton"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/starting_point_temporary_value"
-        android:textSize="18sp" />
+        android:layout_gravity="start"
+        android:text="@string/back_temp" />
 
     <TextView
-        android:id="@+id/scheduleDetailsDestinationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/destination_temporary_value"
-        android:layout_below="@id/scheduleDetailsStartingPointTextView"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/scheduleDetailsAvailableClassesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/available_classes_temporary_value"
-        android:layout_below="@id/scheduleDetailsDestinationTextView"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/scheduleDetailsStationsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/stations_temporary_value"
-        android:layout_below="@id/scheduleDetailsAvailableClassesTextView"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/scheduleDetailsDepartureTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/departure_time_temporary_value"
-        android:layout_below="@id/scheduleDetailsStationsTextView"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/scheduleDetailsArrivalTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/arrival_time_temporary_value"
-        android:layout_below="@id/scheduleDetailsDepartureTimeTextView"
-        android:textSize="18sp" />
-
-    <LinearLayout
-        android:id="@+id/scheduleDetailsButtonLayout"
+        android:id="@+id/scheduleDetailsTrainName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/scheduleDetailsBackButton"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/train_name_temp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/scheduleDetailsDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/scheduleDetailsTrainName"
+        android:gravity="start"
+        android:text="@string/train_description_temp_value"
+        android:textSize="18sp" />
+
+    <TableLayout
+        android:id="@+id/scheduleDetailsTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scheduleDetailsDescriptionTextView">
+        <TableRow>
+            <TextView
+                android:id="@+id/scheduleDetailsTypeLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:gravity="start"
+                android:text="@string/train_type_temp_value"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/scheduleDetailsTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/scheduleDetailsTypeLabelTextView"
+                android:gravity="start"
+                android:text=""
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/scheduleDetailsStartingPointLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/scheduleDetailsDescriptionTextView"
+                android:gravity="start"
+                android:text="@string/starting_point_temporary_value"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/scheduleDetailsStartingPointTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/scheduleDetailsStartingPointLabelTextView"
+                android:gravity="start"
+                android:text="(Station : Time"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/scheduleDetailsDestinationLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/destination_temporary_value"
+                android:layout_below="@id/scheduleDetailsStartingPointTextView"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/scheduleDetailsDestinationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:layout_below="@id/scheduleDetailsDestinationLabelTextView"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/scheduleDetailsDurationLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/duration_temporary_value"
+                android:layout_below="@id/scheduleDetailsDestinationTextView"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/scheduleDetailsDurationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:layout_below="@id/scheduleDetailsDurationLabelTextView"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/scheduleDetailsStationsLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/stations_temporary_value"
+                android:layout_below="@id/scheduleDetailsDurationTextView"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/scheduleDetailsStationsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:layout_below="@id/scheduleDetailsStationsLabelTextView"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/scheduleDetailsAvailableClassesLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/available_classes_temporary_value"
+                android:layout_below="@id/scheduleDetailsStationsTextView"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/scheduleDetailsAvailableClassesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:layout_below="@id/scheduleDetailsAvailableClassesLabelTextView"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/scheduleDetailsAvailableSeatsLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/available_seats_temp_value"
+                android:layout_below="@id/scheduleDetailsAvailableClassesTextView"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/scheduleDetailsAvailableSeatsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:layout_below="@id/scheduleDetailsAvailableSeatsLabelTextView"
+                android:textSize="18sp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/scheduleDetailsBookButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/scheduleDetailsArrivalTimeTextView"
+        android:layout_below="@id/scheduleDetailsTableLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="40dp"
+        android:text="@string/book_temp"
+        android:textSize="16sp"/>
 
-        <Button
-            android:id="@+id/scheduleDetailsBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/back_temp"
-            android:layout_gravity="start" />
-
-        <Button
-            android:id="@+id/scheduleDetailsBookButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/book_temp"
-            android:layout_gravity="end"/>
-    </LinearLayout>
 
 </RelativeLayout>

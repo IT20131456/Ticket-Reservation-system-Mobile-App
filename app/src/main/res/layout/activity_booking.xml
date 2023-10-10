@@ -1,68 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
-    <TextView
-        android:id="@+id/scheduleDetailsTextView"
+    <Button
+        android:id="@+id/bookingBackButton"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="start"
+        android:text="@string/back_temp" />
+
+    <TextView
+        android:id="@+id/bookingTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookingBackButton"
         android:layout_marginTop="16dp"
-        android:text="@string/schedule_details_temp"
-        android:textSize="18sp" />
+        android:layout_marginBottom="16dp"
+        android:text="Reservation"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
 
-    <EditText
-        android:id="@+id/bookingNameEditText"
+    <TableLayout
+        android:id="@+id/bookingFormTableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/user_name_temp"
-        android:autofillHints="name"
-        android:layout_below="@id/scheduleDetailsTextView"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@id/bookingTitle"
+        android:layout_centerHorizontal="true">
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingTrainNameLabelTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Train: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/bookingEmailEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email_address_temp"
-        android:autofillHints="emailAddress"
-        android:layout_below="@id/bookingNameEditText"
-        android:layout_marginTop="16dp" />
+            <TextView
+                android:id="@+id/bookingTrainNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Trainname"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingDepLabelTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="From: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
-    <EditText
-        android:inputType="numberSigned"
-        android:id="@+id/bookingSeatNumberEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/number_of_seats"
-        android:layout_below="@id/bookingEmailEditText"
-        android:layout_marginTop="16dp" />
+            <TextView
+                android:id="@+id/bookingDepTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="from"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingArrLabelTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
-    <LinearLayout
-        android:id="@+id/bookingButtonLayout"
-        android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/bookingArrTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="to"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="40dp">
+            <TextView
+                android:id="@+id/bookingNICTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NIC (Ref. No): "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingNICEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:inputType="text"
+                android:text="NIC"
+                android:textSize="18sp"/>
+
+        </TableRow>
+        <TableRow
+            android:paddingTop="10dp">
+            <TextView
+                android:id="@+id/bookingDateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingExpandCollapseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Select a date"
+                android:onClick="toggleDatePickerVisibility" />
+
+        </TableRow>
+        <TableRow>
+            <TextView/>
+            <!-- DatePicker initially hidden -->
+            <DatePicker
+                android:id="@+id/bookingDatePicker"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bookingExpandCollapseButton"
+                android:visibility="gone" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingFromTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="From: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:inputType="numberSigned"
+                android:id="@+id/bookingFromEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="station"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingtoTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:inputType="numberSigned"
+                android:id="@+id/bookingToEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="station"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingClassTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Class: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:inputType="numberSigned"
+                android:id="@+id/bookingClassEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="1, 2, or 3"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingSeatNumberTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No of Seats: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:inputType="numberSigned"
+                android:id="@+id/bookingSeatNumberEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="@string/number_of_seats"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/bookingContinueButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/continue_temp"
         android:orientation="horizontal"
-        android:layout_below="@id/bookingSeatNumberEditText"
+        android:layout_below="@id/bookingFormTableLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/bookingBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/back_temp"
-            android:layout_gravity="start" />
-
-        <Button
-            android:id="@+id/bookingContinueButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/continue_temp"
-            android:layout_gravity="end" />
-    </LinearLayout>
+        android:layout_marginTop="16dp"/>
 
 </RelativeLayout>

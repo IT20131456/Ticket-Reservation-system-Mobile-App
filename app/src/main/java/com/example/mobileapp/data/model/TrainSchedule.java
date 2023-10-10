@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainSchedule implements Parcelable {
-    private String train_no;
+    private String train_number;
     private String train_name;
     private String train_type;
     private String train_description;
@@ -24,8 +24,8 @@ public class TrainSchedule implements Parcelable {
     public TrainSchedule() {
     }
 
-    public TrainSchedule(String train_no, String train_name, String train_type, String train_description, String departure_station, String arrival_station, String departure_time, String arrival_time, String travel_duration, List<String> intermediate_stops, List<String> seat_classes, List<String> number_of_seats) {
-        this.train_no = train_no;
+    public TrainSchedule(String train_number, String train_name, String train_type, String train_description, String departure_station, String arrival_station, String departure_time, String arrival_time, String travel_duration, List<String> intermediate_stops, List<String> seat_classes, List<String> number_of_seats) {
+        this.train_number = train_number;
         this.train_name = train_name;
         this.train_type = train_type;
         this.train_description = train_description;
@@ -41,7 +41,7 @@ public class TrainSchedule implements Parcelable {
 
     // Parcelable implementation
     protected TrainSchedule(Parcel in) {
-        train_no = in.readString();
+        train_number = in.readString();
         train_name = in.readString();
         train_type = in.readString();
         train_description = in.readString();
@@ -83,7 +83,7 @@ public class TrainSchedule implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(train_no);
+        dest.writeString(train_number);
         dest.writeString(train_name);
         dest.writeString(train_type);
         dest.writeString(train_description);
@@ -105,12 +105,12 @@ public class TrainSchedule implements Parcelable {
 
     // Getters and Setters
 
-    public String getTrain_no() {
-        return train_no;
+    public String getTrain_number() {
+        return train_number;
     }
 
-    public void setTrain_no(String train_no) {
-        this.train_no = train_no;
+    public void setTrain_number(String train_number) {
+        this.train_number = train_number;
     }
 
     public String getTrain_name() {

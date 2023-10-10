@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <Button
+        android:id="@+id/bookingConBackButton"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/back_temp" />
+
+    <TextView
+        android:id="@+id/bookingConTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookingConBackButton"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Reservation"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <ScrollView
+        android:id="@+id/bookingConScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/bookingConTitle"
+        android:isScrollContainer="true">
+    <TableLayout
+        android:id="@+id/bookingConFormTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConTrainDetailsLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Train Details "
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConTrainNameLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Train: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bookingConTrainNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Trainname"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConTypeLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bookingConTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="type"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConDurationLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duration: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bookingConDurationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="full duration"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConDepLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bookingConDepTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="from"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConArrLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bookingConArrTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="to"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConStopsLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stops: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bookingConStopsTextView"
+                android:layout_width="@dimen/cardview_default_elevation"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="stops"
+                android:textSize="18sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConClassesLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Classes: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/bookingConClassesTextView"
+                android:layout_width="@dimen/cardview_default_elevation"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="classes"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConUserDetailsLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Reservation"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConResNoLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID: "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConResNoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="reservation id"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConNICLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NIC (Ref. ID): "
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConNICTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="NIC"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConDatePlacedLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date Created:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConDatePlacedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="date"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConReservationDateLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservation\n   Date:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConReservationDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="date"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConClassTextLabelView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConClassTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="class"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConTicketsLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No of Tickets:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConTicketsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="number"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConTotalLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConTotalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="price"
+                android:textSize="18sp"/>
+        </TableRow>
+    </TableLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/bookingConConfirmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:orientation="horizontal"
+        android:layout_below="@id/bookingConScrollView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>
