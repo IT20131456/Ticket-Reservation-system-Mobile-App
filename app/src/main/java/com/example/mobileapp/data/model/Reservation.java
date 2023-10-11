@@ -3,10 +3,6 @@ package com.example.mobileapp.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 public class Reservation implements Parcelable {
     private String id;
     private String reservation_number;

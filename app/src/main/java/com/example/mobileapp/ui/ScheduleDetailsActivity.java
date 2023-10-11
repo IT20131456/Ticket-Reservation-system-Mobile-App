@@ -49,6 +49,8 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         availableClassesTextView.setText(selectedSchedule.getSeat_classes().toString());
         seatsTextView.setText(selectedSchedule.getNumber_of_seats().toString());
 
+        backButton.setText("< Back");
+
         // Handle the "Book" button click event
         bookButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -55,6 +55,8 @@ public class BookingActivity extends AppCompatActivity {
         backButton = findViewById(R.id.bookingBackButton);
         expandCollapseButton = findViewById(R.id.bookingExpandCollapseButton);
 
+        backButton.setText("< Back");
+
         // Retrieve schedule data passed from ScheduleActivity
         TrainSchedule selectedSchedule = getIntent().getParcelableExtra("schedule");
 
@@ -75,7 +77,7 @@ public class BookingActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 newReservation.setReservation_number(getRandomNumber());
-                newReservation.setReference_id("2000253020802"); // TODO: replace with the actual data
+                newReservation.setReference_id("200011222333"); // TODO: replace with the actual data
                 newReservation.setTrain_id(selectedSchedule.getTrain_number());
                 newReservation.setTrain_name(selectedSchedule.getTrain_name());
                 newReservation.setTravel_route(selectedSchedule.getDeparture_station() + " - " + selectedSchedule.getArrival_station());
@@ -93,7 +95,7 @@ public class BookingActivity extends AppCompatActivity {
                 } else {
                     newReservation.setReservation_date(expandCollapseButton.getText().toString());
                 }
-                newReservation.setStatus("Created");
+                newReservation.setStatus("Active");
                 // Generate an Object ID
                 ObjectId objectId = new ObjectId();
 
@@ -133,7 +135,13 @@ public class BookingActivity extends AppCompatActivity {
     }
 
     private int getTotal(int selectedClass, int noOfTickets) {
-        return selectedClass * noOfTickets * 20;
+        if(selectedClass == 1) {
+            return 1000 * noOfTickets;
+        } else if (selectedClass == 2) {
+            return 200 * noOfTickets;
+        } else {
+            return 30 * noOfTickets;
+        }
     }
 
     private int getTrainClass(String toString) {

@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
-
+    android:layout_height="match_parent">
     <Button
         android:id="@+id/scheduleDetailsBackButton"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="@string/back_temp" />
+        android:text="@string/back_temp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scheduleDetailsBackButton"
+        android:padding="20dp">
 
     <TextView
         android:id="@+id/scheduleDetailsTrainName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scheduleDetailsBackButton"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/train_name_temp"
         android:textAlignment="center"
@@ -145,7 +151,7 @@
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/scheduleDetailsStationsTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/cardview_default_elevation"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:layout_marginTop="16dp"
@@ -168,7 +174,7 @@
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/scheduleDetailsAvailableClassesTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/cardview_default_elevation"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:layout_marginTop="16dp"
@@ -213,5 +219,5 @@
         android:text="@string/book_temp"
         android:textSize="16sp"/>
 
-
+    </RelativeLayout>
 </RelativeLayout>
