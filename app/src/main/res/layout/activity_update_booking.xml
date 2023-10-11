@@ -1,18 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent" >
 
     <Button
-        android:id="@+id/updateBookingConBackButton"
+        android:id="@+id/updateBookingBackButton"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="@string/back_temp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:backgroundTint="@color/white"
         android:textStyle="bold" />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updateBookingBackButton"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/updateBookingTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Reservation"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <TableLayout
+            android:id="@+id/updateBookingFormTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateBookingTitle"
+            android:layout_centerHorizontal="true">
+            <TableRow>
+                <TextView
+                    android:id="@+id/updateBookingTrainNameLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Train: "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/updateBookingTrainNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Trainname"
+                    android:textSize="18sp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/updateBookingRouteLabelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Route: "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/updateBookingRouteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Route"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="40dp">
+                <TextView
+                    android:id="@+id/updateBookingNICTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NIC (Ref. No): "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/updateBookingNICEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="text"
+                    android:text="NIC"
+                    android:textSize="18sp"/>
+
+            </TableRow>
+            <TableRow
+                android:paddingTop="10dp">
+                <TextView
+                    android:id="@+id/updateBookingDateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Date: "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/updateBookingExpandCollapseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Select a date"
+                    android:onClick="toggleDatePickerVisibility"
+                    android:textSize="16sp"/>
+
+            </TableRow>
+            <TableRow>
+                <TextView/>
+                <!-- DatePicker initially hidden -->
+                <DatePicker
+                    android:id="@+id/updateBookingDatePicker"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/updateBookingExpandCollapseButton"
+                    android:visibility="gone" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/updateBookingFromTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="From: "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/updateBookingFromEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:hint="station"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/updateBookingtoTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="To: "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/updateBookingToEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:hint="station"
+                    android:inputType="text"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/updateBookingClassTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Class: "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/updateBookingClassEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:hint="1, 2, or 3"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/updateBookingSeatNumberTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No of Seats: "
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:inputType="numberSigned"
+                    android:id="@+id/updateBookingSeatNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:hint="@string/number_of_seats"/>
+            </TableRow>
+
+        </TableLayout>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateBookingFormTableLayout"
+            android:padding="10dp"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/removeBookingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/updateBookingUpdateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>
