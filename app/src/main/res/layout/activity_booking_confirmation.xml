@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="20dp">
+    android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/bookingConBackButton"
@@ -10,13 +9,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="@string/back_temp" />
+        android:text="@string/back_temp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookingConBackButton"
+        android:padding="20dp">
 
     <TextView
         android:id="@+id/bookingConTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bookingConBackButton"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="Reservation"
@@ -144,7 +152,7 @@
                 android:layout_width="@dimen/cardview_default_elevation"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="stops"
+                android:text="stop sdjskdjksjdksjddjsdshdjshdjskh"
                 android:textSize="18sp" />
         </TableRow>
         <TableRow>
@@ -186,7 +194,7 @@
             <TextView
                 android:id="@+id/bookingConResNoTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:inputType="text"
                 android:text="reservation id"
@@ -203,7 +211,7 @@
             <TextView
                 android:id="@+id/bookingConNICTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:inputType="text"
                 android:text="NIC"
@@ -220,7 +228,7 @@
             <TextView
                 android:id="@+id/bookingConDatePlacedTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:inputType="text"
                 android:text="date"
@@ -237,10 +245,27 @@
             <TextView
                 android:id="@+id/bookingConReservationDateTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:inputType="text"
                 android:text="date"
+                android:textSize="18sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/bookingConJourneyLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Journey:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/bookingConJourneyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="5dp"
+                android:inputType="text"
+                android:text="from-to"
                 android:textSize="18sp"/>
         </TableRow>
         <TableRow>
@@ -254,7 +279,7 @@
             <TextView
                 android:id="@+id/bookingConClassTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:inputType="text"
                 android:text="class"
@@ -271,7 +296,7 @@
             <TextView
                 android:id="@+id/bookingConTicketsTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:inputType="text"
                 android:text="number"
@@ -288,7 +313,7 @@
             <TextView
                 android:id="@+id/bookingConTotalTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="5dp"
                 android:inputType="text"
                 android:text="price"
@@ -306,5 +331,5 @@
         android:layout_below="@id/bookingConScrollView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
-
+    </RelativeLayout>
 </RelativeLayout>

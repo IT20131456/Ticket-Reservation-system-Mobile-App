@@ -16,6 +16,15 @@
         android:theme="@style/Theme.MobileApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.BookingUpdateSummaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UpdateBookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AllBookingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.BookingConfirmationActivity"
             android:exported="false" />
         <activity

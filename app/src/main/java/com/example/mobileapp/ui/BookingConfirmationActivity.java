@@ -29,7 +29,7 @@ public class BookingConfirmationActivity extends AppCompatActivity {
             trainFromTextView, trainToTextView, trainStropsTextView,
             trainClassesTextView, reservationNumberTextView, refNoTextView,
             createdDateTextView, reservationDateTextView, classTextView,
-            numberOfTicketsTextView, totalTextView;
+            numberOfTicketsTextView, totalTextView, journeyTextView;
 
     private Button confirmButton, backButton;
 
@@ -61,6 +61,7 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         totalTextView = findViewById(R.id.bookingConTotalTextView);
         confirmButton = findViewById(R.id.bookingConConfirmButton);
         backButton = findViewById(R.id.bookingConBackButton);
+        journeyTextView = findViewById(R.id.bookingConJourneyTextView);
 
         // Set values
         trainNameTextView.setText(reservation.getTrain_name());
@@ -77,6 +78,9 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         classTextView.setText(String.valueOf(reservation.getTicket_class()));
         numberOfTicketsTextView.setText(String.valueOf(reservation.getNumber_of_tickets()));
         totalTextView.setText(Float.toString(reservation.getTotal_price()));
+        journeyTextView.setText(reservation.getFrom() + " - " + reservation.getTo());
+
+        backButton.setText("< Back");
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +110,7 @@ public class BookingConfirmationActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             // Handle success (e.g., display a success message)
                             Toast.makeText(BookingConfirmationActivity.this, "Ticket booked successfully!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(BookingConfirmationActivity.this, AllSchedulesActivity.class);
+                            Intent intent = new Intent(BookingConfirmationActivity.this, HomeActivity.class);
                             startActivity(intent);
 
                         } else {

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="match_parent" >
 
     <Button
         android:id="@+id/bookingBackButton"
@@ -10,13 +9,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="@string/back_temp" />
+        android:text="@string/back_temp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookingBackButton"
+        android:padding="20dp">
 
     <TextView
         android:id="@+id/bookingTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bookingBackButton"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="Reservation"
@@ -95,7 +103,7 @@
             <TextView
                 android:id="@+id/bookingNICEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:inputType="text"
                 android:text="NIC"
@@ -114,10 +122,11 @@
             <TextView
                 android:id="@+id/bookingExpandCollapseButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:text="Select a date"
-                android:onClick="toggleDatePickerVisibility" />
+                android:onClick="toggleDatePickerVisibility"
+                android:textSize="16sp"/>
 
         </TableRow>
         <TableRow>
@@ -139,10 +148,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <EditText
-                android:inputType="numberSigned"
                 android:id="@+id/bookingFromEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:hint="station"/>
         </TableRow>
@@ -155,12 +163,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <EditText
-                android:inputType="numberSigned"
                 android:id="@+id/bookingToEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
-                android:hint="station"/>
+                android:hint="station"
+                android:inputType="text"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -171,10 +179,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <EditText
-                android:inputType="numberSigned"
                 android:id="@+id/bookingClassEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:hint="1, 2, or 3"/>
         </TableRow>
@@ -190,7 +197,7 @@
                 android:inputType="numberSigned"
                 android:id="@+id/bookingSeatNumberEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:hint="@string/number_of_seats"/>
         </TableRow>
@@ -207,4 +214,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
+    </RelativeLayout>
 </RelativeLayout>
