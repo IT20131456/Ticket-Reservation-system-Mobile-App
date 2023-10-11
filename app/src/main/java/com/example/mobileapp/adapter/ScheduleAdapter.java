@@ -36,11 +36,12 @@ public class ScheduleAdapter extends ArrayAdapter<TrainSchedule> {
         // Find and populate the TextViews in the list item layout
         TextView trainNameTextView = convertView.findViewById(R.id.schedulesTrainNameTextView);
         TextView departureTimeTextView = convertView.findViewById(R.id.schedulesDepartureTimeTextView);
-        // Add more TextViews for other schedule details as needed
+        TextView fromToTextView = convertView.findViewById(R.id.schedulesFromTo);
 
         // Set the data from the TrainSchedule object into the TextViews
-        trainNameTextView.setText("Train Name: " + schedule.getTrainName());
-        departureTimeTextView.setText("Departure Time: " + schedule.getDepartureTime());
+        trainNameTextView.setText(schedule.getTrain_name());
+        fromToTextView.setText(schedule.getDeparture_station() + " -> " + schedule.getArrival_station());
+        departureTimeTextView.setText("Departure Time: " + schedule.getDeparture_time());
         // Populate other TextViews similarly
 
         return convertView;

@@ -10,6 +10,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/train_name_temp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/schedulesFromTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="16sp" />
 
     <TextView
@@ -17,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/departure_time_temp"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 
     <!-- You can add more TextViews for other schedule information here -->
 
