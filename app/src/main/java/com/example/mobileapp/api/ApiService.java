@@ -26,5 +26,8 @@ public interface ApiService {
 
     @DELETE("api/TicketBooking/{id}")
     Call<Void> removeReservation(@Path("id") String id);
+
+    @GET("api/TrainSchedule/tno/{id}")
+    Call<TrainSchedule> getSchedule(@Path("id") String id);
 }
 

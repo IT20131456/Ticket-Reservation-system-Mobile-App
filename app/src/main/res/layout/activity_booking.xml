@@ -147,12 +147,18 @@
                 android:text="From: "
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/bookingFromEditText"
+<!--            <EditText-->
+<!--                android:id="@+id/bookingFromEditText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:hint="station"/>-->
+            <Spinner
+                android:id="@+id/bookingFromSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
-                android:hint="station"/>
+                android:layout_marginLeft="20dp"/>
+
         </TableRow>
         <TableRow>
             <TextView
@@ -162,13 +168,18 @@
                 android:text="To: "
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/bookingToEditText"
+<!--            <EditText-->
+<!--                android:id="@+id/bookingToEditText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:hint="station"-->
+<!--                android:inputType="text"/>-->
+            <Spinner
+                android:id="@+id/bookingToSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
-                android:hint="station"
-                android:inputType="text"/>
+                android:layout_marginLeft="20dp"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -178,12 +189,17 @@
                 android:text="Class: "
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/bookingClassEditText"
+<!--            <EditText-->
+<!--                android:id="@+id/bookingClassEditText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:hint="1, 2, or 3"/>-->
+            <Spinner
+                android:id="@+id/bookingClassSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
-                android:hint="1, 2, or 3"/>
+                android:layout_marginLeft="20dp"/>
         </TableRow>
         <TableRow>
             <TextView

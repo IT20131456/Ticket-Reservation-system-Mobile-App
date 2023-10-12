@@ -16,6 +16,8 @@ import com.example.mobileapp.login.LoginServiceGenerator;
 import com.example.mobileapp.login.SessionManagement;
 import com.example.mobileapp.login.User;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -105,6 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     // Login failed
+                    Log.e("LoginInfo", "Failed login. HTTP error code: " + response.code());
+                    // log the error response body
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("LoginInfo", "Error response body: " + errorBody);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -66,8 +66,10 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
 
         if (type.equals("update")) {
             confirmationText.setText("Please check and confirm the changes");
+        } else if (type.equals("cancel")) {
+            confirmationText.setText("Once cancelled, you cannot re-activate the booking");
         } else {
-            confirmationText.setText("Once removed, you cannot reactivate a booking");
+            confirmationText.setText("Once removed, you cannot recover booking details");
         }
         backButton.setText("< Back");
 
@@ -93,7 +95,7 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
                 ApiService apiService = retrofit.create(ApiService.class);
 
 
-                if (type.equals("update")) {
+                if (type.equals("update") || type.equals("cancel")) {
                     // Make the PUT request
                     Call<Void> call = apiService.updateReservation(reservation.getId(), reservation);
                     call.enqueue(new Callback<Void>() {

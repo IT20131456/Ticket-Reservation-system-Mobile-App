@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -22,6 +21,8 @@ import com.example.mobileapp.R;
 import com.example.mobileapp.adapter.BookingAdapter;
 import com.example.mobileapp.api.ApiService;
 import com.example.mobileapp.data.model.Reservation;
+import com.example.mobileapp.login.SessionManagement;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,7 +55,8 @@ public class AllBookingsActivity extends AppCompatActivity {
 
         backButton.setText("< Back");
 
-        String nic = "200011222333";
+        SessionManagement sessionManagement = new SessionManagement(AllBookingsActivity.this);
+        String nic = sessionManagement.getSessionNIC();
 
         Log.i("TrainInfo", "onCreate: AllBookings");
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +68,7 @@ public class AllBookingsActivity extends AppCompatActivity {
 
         // Initialize Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:5041/") // Replace with your API base URL
+                .baseUrl("http://10.0.2.2:5041/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
