@@ -19,7 +19,7 @@
     <string name="duration_temporary_value">Duration: </string>
     <string name="available_seats_temp_value">Seats: </string>
     <string name="book_temp">Reserve</string>
-    <string name="ticket_reservation_app_temp">Ticket Reservation App</string>
+    <string name="ticket_reservation_app_temp">Train Ticket</string>
     <string name="go_to_login_temp">Go to Login</string>
     <string name="login_activity_temp">Login Activity</string>
     <string name="login_temp">Login</string>

@@ -77,9 +77,10 @@
                 android:textStyle="bold"/>
 
             <EditText
+                android:id="@+id/userIDInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:drawableEnd="@drawable/baseline_perm_identity_24"/>
 
             <View
@@ -93,6 +94,7 @@
                 android:textStyle="bold"/>
 
             <EditText
+                android:id="@+id/userPasswordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
