@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainSchedule implements Parcelable {
+    private String id;
     private String train_number;
     private String train_name;
     private String train_type;
@@ -19,12 +20,14 @@ public class TrainSchedule implements Parcelable {
     private List<String> intermediate_stops;
     private List<String> seat_classes;
     private List<String> number_of_seats;
+    private Integer isActive;
 
     // Constructors, getters, setters, and Parcelable implementation
     public TrainSchedule() {
     }
 
-    public TrainSchedule(String train_number, String train_name, String train_type, String train_description, String departure_station, String arrival_station, String departure_time, String arrival_time, String travel_duration, List<String> intermediate_stops, List<String> seat_classes, List<String> number_of_seats) {
+    public TrainSchedule(String id, String train_number, String train_name, String train_type, String train_description, String departure_station, String arrival_station, String departure_time, String arrival_time, String travel_duration, List<String> intermediate_stops, List<String> seat_classes, List<String> number_of_seats, Integer isActive) {
+        this.id = id;
         this.train_number = train_number;
         this.train_name = train_name;
         this.train_type = train_type;
@@ -37,10 +40,12 @@ public class TrainSchedule implements Parcelable {
         this.intermediate_stops = intermediate_stops;
         this.seat_classes = seat_classes;
         this.number_of_seats = number_of_seats;
+        this.isActive = isActive;
     }
 
     // Parcelable implementation
     protected TrainSchedule(Parcel in) {
+        id = in.readString();
         train_number = in.readString();
         train_name = in.readString();
         train_type = in.readString();
@@ -50,6 +55,7 @@ public class TrainSchedule implements Parcelable {
         departure_time = in.readString();
         arrival_time = in.readString();
         travel_duration = in.readString();
+        isActive = in.readInt();
 
         // Read intermediateStops List
         intermediate_stops = new ArrayList<>();
@@ -83,6 +89,7 @@ public class TrainSchedule implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(train_number);
         dest.writeString(train_name);
         dest.writeString(train_type);
@@ -92,6 +99,7 @@ public class TrainSchedule implements Parcelable {
         dest.writeString(departure_time);
         dest.writeString(arrival_time);
         dest.writeString(travel_duration);
+        dest.writeInt(isActive);
 
         // Write intermediateStops List
         dest.writeList(intermediate_stops);
@@ -104,6 +112,13 @@ public class TrainSchedule implements Parcelable {
     }
 
     // Getters and Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTrain_number() {
         return train_number;
@@ -199,5 +214,13 @@ public class TrainSchedule implements Parcelable {
 
     public void setNumber_of_seats(List<String> number_of_seats) {
         this.number_of_seats = number_of_seats;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 }
