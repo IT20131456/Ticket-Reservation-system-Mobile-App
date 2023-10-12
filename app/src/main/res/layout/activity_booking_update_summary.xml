@@ -219,13 +219,14 @@
                         android:textSize="18sp"/>
                 </TableRow>
                 <TableRow>
+
                     <TextView
                         android:id="@+id/summaryTotalLabelTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total:"
+                        android:text="Total (Rs.):"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/summaryTotalTextView"
                         android:layout_width="wrap_content"
