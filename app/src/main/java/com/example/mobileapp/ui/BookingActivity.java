@@ -19,14 +19,17 @@ import com.example.mobileapp.R;
 import com.example.mobileapp.data.model.Reservation;
 import com.example.mobileapp.data.model.TrainSchedule;
 import com.example.mobileapp.login.SessionManagement;
+import com.example.mobileapp.utils.Utils;
 
 import org.bson.types.ObjectId;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
+/**
+ * Activity class for handling the train booking process, including selecting travel details and making reservations.
+ */
 public class BookingActivity extends AppCompatActivity {
 
     private String selectedFrom = "";
@@ -136,7 +139,7 @@ public class BookingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                newReservation.setReservation_number(getRandomNumber());
+                newReservation.setReservation_number(Utils.getRandomNumber());
                 newReservation.setReference_id(nic);
                 newReservation.setTrain_id(selectedSchedule.getTrain_number());
                 newReservation.setTrain_name(selectedSchedule.getTrain_name());
@@ -144,11 +147,11 @@ public class BookingActivity extends AppCompatActivity {
                 newReservation.setFrom(selectedFrom);
                 newReservation.setTo(selectedTo);
 
-                int selectedClassInInt = getTrainClass(selectedClass);
+                int selectedClassInInt = Utils.getTrainClassAsNumber(selectedClass);
                 int noOfTickets = Integer.parseInt(noOfSeatsEditText.getText().toString());
                 newReservation.setTicket_class(selectedClassInInt);
                 newReservation.setNumber_of_tickets(noOfTickets);
-                newReservation.setTotal_price(getTotal(selectedClassInInt, noOfTickets));
+                newReservation.setTotal_price(Utils.getTotal(selectedClassInInt, noOfTickets));
                 newReservation.setBooking_date(formattedDate);
                 if (expandCollapseButton.getText().toString().equals("Select a date")) {
                     newReservation.setReservation_date(formattedDate);
@@ -161,7 +164,7 @@ public class BookingActivity extends AppCompatActivity {
 
                 newReservation.setId(objectId.toString());
 
-                String invalidData = validateData(newReservation, selectedSchedule);
+                String invalidData = Utils.validateData(newReservation, selectedSchedule);
                 if(invalidData.equals("")) {
                     // Create an Intent to navigate to BookingActivity
                     Intent intent = new Intent(BookingActivity.this, BookingConfirmationActivity.class);
@@ -186,42 +189,7 @@ public class BookingActivity extends AppCompatActivity {
         });
     }
 
-    private int getPosition(List<String> stringList, String from) {
-        return stringList.indexOf(from);
-    }
-
-    private String validateData(Reservation newReservation, TrainSchedule selectedSchedule) {
-        if (newReservation.getNumber_of_tickets() > 4) {
-            return "Maximum of 4 tickets are allowed for a NIC";
-        } else if (getPosition(selectedSchedule.getIntermediate_stops(), newReservation.getFrom()) <
-                getPosition(selectedSchedule.getIntermediate_stops(), newReservation.getTo())) {
-            return "Please select a valid stations for starting and ending point";
-        } else if (newReservation.getNumber_of_tickets() < 1) {
-            return "Please provide ticket count";
-        }
-        return "";
-    }
-
-    private int getTotal(int selectedClass, int noOfTickets) {
-        if(selectedClass == 1) {
-            return 1000 * noOfTickets;
-        } else if (selectedClass == 2) {
-            return 200 * noOfTickets;
-        } else {
-            return 30 * noOfTickets;
-        }
-    }
-
-    private int getTrainClass(String toString) {
-        if (toString.equals("First-Class")) {
-            return 1;
-        } else if (toString.equals("Second-Class")) {
-            return 2;
-        } else {
-            return 3;
-        }
-    }
-
+    // Function to handle the date-picker validation and visibility
     public void toggleDatePickerVisibility(View view) {
         DatePicker datePicker = findViewById(R.id.bookingDatePicker);
         TextView expandCollapseButton = findViewById(R.id.bookingExpandCollapseButton);
@@ -248,17 +216,5 @@ public class BookingActivity extends AppCompatActivity {
         if (year != 0 && month != 0 && dayOfMonth != 0) {
             expandCollapseButton.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         }
-    }
-
-    public String getRandomNumber() {
-        // Generate a random double between 0 (inclusive) and 1 (exclusive)
-        double randomDouble = Math.random();
-
-        // Generate a random number between 1 and 10000
-        int min = 1;
-        int max = 10000;
-        int randomNumber = (int) (Math.random() * (max - min + 1)) + min;
-
-        return Integer.toString(randomNumber);
     }
 }

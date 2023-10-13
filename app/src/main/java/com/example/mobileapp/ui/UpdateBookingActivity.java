@@ -21,12 +21,11 @@ import com.example.mobileapp.adapter.ScheduleAdapter;
 import com.example.mobileapp.api.ApiService;
 import com.example.mobileapp.data.model.Reservation;
 import com.example.mobileapp.data.model.TrainSchedule;
+import com.example.mobileapp.utils.Utils;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -35,6 +34,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Activity for updating and managing a booking including updating, cancelling, or removing it.
+ */
 public class UpdateBookingActivity extends AppCompatActivity {
     private TrainSchedule selectedSchedule = new TrainSchedule();
     private ScheduleAdapter scheduleAdapter;
@@ -99,7 +101,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
 
         if (selectedBooking.getStatus().equals("Active")) {
             updateBookingButton.setEnabled(false);
-            if (isValidUpdate(selectedBooking.getReservation_date())) {
+            if (Utils.isValidUpdate(selectedBooking.getReservation_date())) {
                 cancelBookingButton.setEnabled(true);
                 updateBookingButton.setEnabled(true);
             } else {
@@ -112,7 +114,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
             updateBookingButton.setEnabled(false);
         }
 
-        if (isDateInPast(selectedBooking.getReservation_date())) {
+        if (Utils.isDateInPast(selectedBooking.getReservation_date())) {
             removeBookingButton.setEnabled(true);
             cancelBookingButton.setEnabled(false);
             updateBookingButton.setEnabled(false);
@@ -152,15 +154,14 @@ public class UpdateBookingActivity extends AppCompatActivity {
                     toSpinner.setAdapter(toAdapter);
                     classesSpinner.setAdapter(classesAdapter);
 
-                    fromSpinner.setSelection(getPosition(selectedSchedule.getIntermediate_stops(), selectedBooking.getFrom()));
-                    toSpinner.setSelection(getPosition(selectedSchedule.getIntermediate_stops(), selectedBooking.getTo()));
-                    classesSpinner.setSelection(getPosition(selectedSchedule.getSeat_classes(), getTicketClassAsString(selectedBooking.getTicket_class())));
+                    fromSpinner.setSelection(Utils.getPosition(selectedSchedule.getIntermediate_stops(), selectedBooking.getFrom()));
+                    toSpinner.setSelection(Utils.getPosition(selectedSchedule.getIntermediate_stops(), selectedBooking.getTo()));
+                    classesSpinner.setSelection(Utils.getPosition(selectedSchedule.getSeat_classes(), Utils.getTicketClassAsString(selectedBooking.getTicket_class())));
 
                 } else {
                     Toast.makeText(UpdateBookingActivity.this, "Failed to load.", Toast.LENGTH_SHORT).show();
                     Log.e("TrainInfo", "Failed get bookings. HTTP error code: " + response.code());
 
-                    // You can also log the error response body if needed
                     try {
                         String errorBody = response.errorBody().string();
                         Log.e("TrainInfo", "Error response body: " + errorBody);
@@ -173,12 +174,11 @@ public class UpdateBookingActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<TrainSchedule> call, Throwable t) {
                 Log.i("TrainInfo", "On failure: " + t.getMessage());
-                // Handle failure to make the API call
-                // display an error message or take appropriate action here
+                Toast.makeText(UpdateBookingActivity.this, "Failed to load.", Toast.LENGTH_SHORT).show();
             }
-
         });
 
+        // Handle drop-down for available stations and the selected one
         fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -191,6 +191,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
             }
         });
 
+        // Handle drop-down for available stations and the selected one
         toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -203,6 +204,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
             }
         });
 
+        // Handle drop-down for available classes and the selected one
         classesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -211,7 +213,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                selectedClass = getTicketClassAsString(selectedBooking.getTicket_class());
+                selectedClass = Utils.getTicketClassAsString(selectedBooking.getTicket_class());
             }
         });
 
@@ -219,17 +221,17 @@ public class UpdateBookingActivity extends AppCompatActivity {
         updateBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // get updated values
+                selectedBooking.setFrom(selectedFrom);
+                selectedBooking.setTo(selectedTo);
+                selectedBooking.setTicket_class(Utils.getTrainClassAsNumber(selectedClass));
+                selectedBooking.setNumber_of_tickets(Integer.parseInt(noOfSeatsEditText.getText().toString()));
+                selectedBooking.setReservation_date(expandCollapseButton.getText().toString());
+                selectedBooking.setTotal_price(Utils.getTotal(Integer.parseInt(noOfSeatsEditText.getText().toString()), Utils.getTrainClassAsNumber(selectedClass)));
 
-                String invalidData = validateData(selectedBooking, selectedSchedule);
+                String invalidData = Utils.validateData(selectedBooking, selectedSchedule);
 
                 if(invalidData.equals("")) {
-                    // get updated values
-                    selectedBooking.setFrom(selectedFrom);
-                    selectedBooking.setTo(selectedTo);
-                    selectedBooking.setTicket_class(getTrainClassAsNumber(selectedClass));
-                    selectedBooking.setNumber_of_tickets(Integer.parseInt(noOfSeatsEditText.getText().toString()));
-                    selectedBooking.setReservation_date(expandCollapseButton.getText().toString());
-                    selectedBooking.setTotal_price(getTotal(Integer.parseInt(noOfSeatsEditText.getText().toString()), getTrainClassAsNumber(selectedClass)));
                     // Create an Intent to navigate to BookingActivity
                     Intent intent = new Intent(UpdateBookingActivity.this, BookingUpdateSummaryActivity.class);
                     // Pass the selected schedule data to BookingActivity
@@ -270,84 +272,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
 
     }
 
-    private boolean isDateInPast(String dateToCheck) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date currentDate = new Date();
-
-        try {
-            Date date = sdf.parse(dateToCheck);
-            // Compare the parsed date with the current date
-            return date.before(currentDate);
-        } catch (ParseException e) {
-            // Handle the ParseException
-            e.printStackTrace();
-            return false; // Consider it as not in the past if parsing fails
-        }
-    }
-    private boolean isValidUpdate(String resDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date currentDate = new Date();
-        Date reservationDate = null; // Initialize to null
-
-        try {
-            reservationDate = sdf.parse(resDate);
-        } catch (ParseException e) {
-            // Handle the ParseException
-            e.printStackTrace();
-            return false; // Parsing failed, so it's not a valid date
-        }
-
-        if (reservationDate != null) {
-            Calendar currentCalendar = Calendar.getInstance();
-            Calendar reservationCalendar = Calendar.getInstance();
-
-            currentCalendar.setTime(currentDate);
-            reservationCalendar.setTime(reservationDate);
-
-            long daysDifference = (reservationCalendar.getTimeInMillis() - currentCalendar.getTimeInMillis()) / (1000 * 60 * 60 * 24);
-
-            return daysDifference >= 5;
-        }
-
-        return false; // Parsing resulted in null date
-    }
-
-
-    private int getPosition(List<String> stringList, String from) {
-        return stringList.indexOf(from);
-    }
-
-
-    private String getTicketClassAsString(Integer ticketClass) {
-        if (ticketClass == 1){
-            return "First-Class";
-        } else if (ticketClass == 2) {
-            return "Second-Class";
-        } else {
-            return "Third-Class";
-        }
-    }
-
-    private int getTotal(int selectedClass, int noOfTickets) {
-        if (selectedClass == 1) {
-            return 1000 * noOfTickets;
-        } else if (selectedClass == 2) {
-            return 200 * noOfTickets;
-        } else {
-            return 30 * noOfTickets;
-        }
-    }
-
-    private int getTrainClassAsNumber(String toString) {
-        if (toString.equals("First-Class")) {
-            return 1;
-        } else if (toString.equals("Second-Class")) {
-            return 2;
-        } else {
-            return 3;
-        }
-    }
-
+    // Function to handle the date-picker validation and visibility
     public void toggleDatePickerVisibility(View view) {
         DatePicker datePicker = findViewById(R.id.updateBookingDatePicker);
         TextView expandCollapseButton = findViewById(R.id.updateBookingExpandCollapseButton);
@@ -374,17 +299,5 @@ public class UpdateBookingActivity extends AppCompatActivity {
         if (year != 0 && month != 0 && dayOfMonth != 0) {
             expandCollapseButton.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         }
-    }
-
-    private String validateData(Reservation newReservation, TrainSchedule selectedSchedule) {
-        if (newReservation.getNumber_of_tickets() > 4) {
-            return "Maximum of 4 tickets are allowed for a NIC";
-        } else if (getPosition(selectedSchedule.getIntermediate_stops(), newReservation.getFrom()) <
-                getPosition(selectedSchedule.getIntermediate_stops(), newReservation.getTo())) {
-            return "Please select a valid stations for starting and ending point";
-        } else if (newReservation.getNumber_of_tickets() < 1) {
-            return "Please provide ticket count";
-        }
-        return "";
     }
 }

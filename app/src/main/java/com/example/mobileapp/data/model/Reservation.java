@@ -3,26 +3,37 @@ package com.example.mobileapp.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Model class representing a train reservation.
+ * Implements Parcelable to allow for object transfer between components.
+ */
 public class Reservation implements Parcelable {
-    private String id;
-    private String reservation_number;
-    private String reference_id;
-    private String train_id;
-    private String train_name;
-    private String travel_route;
-    private String from;
-    private String to;
-    private String booking_date;
-    private String reservation_date;
-    private Integer ticket_class;
-    private Integer number_of_tickets;
-    private Integer total_price;
-    private String status;
+    private String id;  // Object ID
+    private String reservation_number;  // Unique reservation number
+    private String reference_id;    // NIC of the user
+    private String train_id;    // ID of the booked train
+    private String train_name;  // Name of the booked train
+    private String travel_route;    // Route
+    private String from;    // Departure station
+    private String to;  // Arrival station
+    private String booking_date;    // Date created
+    private String reservation_date;    // Reservation date
+    private Integer ticket_class;   // Class if the ticket
+    private Integer number_of_tickets;  // Number of tickets reserved
+    private Integer total_price;    // Total price for reservation
+    private String status;  // Status of the reservation
 
     // Constructors, getters, setters, and Parcelable implementation
+
+    /**
+     * Default constructor.
+     */
     public Reservation() {
     }
 
+    /**
+     * Parameterized constructor to initialize a Reservation object.
+     */
     public Reservation(String id, String reservation_number, String reference_id, String train_id, String train_name, String travel_route, String from, String to, String booking_date, Integer ticket_class, Integer number_of_tickets, Integer total_price, String status, String reservation_date) {
         this.id = id;
         this.reservation_number = reservation_number;
@@ -42,6 +53,7 @@ public class Reservation implements Parcelable {
 
     // Parcelable implementation
     protected Reservation(Parcel in) {
+        // Read data from Parcel and assign to class members
         id = in.readString();
         reservation_number = in.readString();
         reference_id = in.readString();
@@ -61,22 +73,26 @@ public class Reservation implements Parcelable {
     public static final Creator<Reservation> CREATOR = new Creator<Reservation>() {
         @Override
         public Reservation createFromParcel(Parcel in) {
+            // Create a Reservation object from a Parcel
             return new Reservation(in);
         }
 
         @Override
         public Reservation[] newArray(int size) {
+            // Create an array of Reservation objects
             return new Reservation[size];
         }
     };
 
     @Override
     public int describeContents() {
+        // Required method for Parcelable, but not used in this case
         return 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        // Write class members to Parcel for data transfer
         dest.writeString(id);
         dest.writeString(reservation_number);
         dest.writeString(reference_id);
@@ -94,7 +110,6 @@ public class Reservation implements Parcelable {
     }
 
     // Getters and Setters
-
     public String getReservation_number() {
         return reservation_number;
     }

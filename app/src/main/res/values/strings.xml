@@ -14,7 +14,7 @@
     <string name="train_description_temp_value">Description: </string>
     <string name="starting_point_temporary_value">From: </string>
     <string name="destination_temporary_value">To: </string>
-    <string name="available_classes_temporary_value">Classes: </string>
+    <string name="available_classes_temporary_value">Classes (Seats): </string>
     <string name="stations_temporary_value">Stops: </string>
     <string name="duration_temporary_value">Duration: </string>
     <string name="available_seats_temp_value">Seats: </string>
