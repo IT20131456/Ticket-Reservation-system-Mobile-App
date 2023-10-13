@@ -1,8 +1,9 @@
+/**
+ * This package contains classes related to the signup functionality of the mobile application.
+ */
 package com.example.mobileapp.signup;
 
 import android.util.Log;
-
-import com.example.mobileapp.login.LoginService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,7 +17,7 @@ public class SignupServiceGenerator {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Log.i("LoginInfo", "SignupService created");
+        Log.i("SignupInfo", "SignupService created");
         return retrofit.create(SignupService.class);
     }
 }

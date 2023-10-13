@@ -22,6 +22,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * LoginActivity is the activity that allows users to log in to the app.
+ *
+ * This activity displays a login form with two EditText fields, one for the user ID and one for the user password.
+ * When the user clicks the "Login" button, the activity validates the user input and then calls the login API.
+ *
+ * If the login is successful, the activity redirects the user to the HomeActivity. Otherwise, the activity displays an error message to the user.
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     protected void onStart(){

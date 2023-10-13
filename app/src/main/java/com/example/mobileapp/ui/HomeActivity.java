@@ -21,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Button viewAllSchedulesButton = findViewById(R.id.viewAllSchedulesButton);
         Button viewAllBookingsButton = findViewById(R.id.viewAllBookingsButton);
+        Button viewUserProfileButton = findViewById(R.id.btn_my_profile);
 
         TextView loggedUserTextView = findViewById(R.id.logged_user);
         SessionManagement sessionManagement = new SessionManagement(HomeActivity.this);
@@ -44,6 +45,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Create an Intent to navigate to AllSchedulesActivity
                 Intent intent = new Intent(HomeActivity.this, AllBookingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewUserProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to navigate to UserProfileActivity
+                Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
                 startActivity(intent);
             }
         });

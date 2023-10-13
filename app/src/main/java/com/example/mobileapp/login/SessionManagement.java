@@ -1,3 +1,6 @@
+/**
+ * This file contains the SessionManagement class which is responsible for managing user sessions in the mobile app.
+ */
 package com.example.mobileapp.login;
 
 import android.content.Context;

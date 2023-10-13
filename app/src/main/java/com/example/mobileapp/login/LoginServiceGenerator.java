@@ -1,3 +1,6 @@
+/**
+ * This class generates a service for login functionality in the mobile application.
+ */
 package com.example.mobileapp.login;
 
 import android.util.Log;

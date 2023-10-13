@@ -1,3 +1,6 @@
+/**
+ * This file contains the User class which is used for login functionality in the mobile app.
+ */
 package com.example.mobileapp.login;
 
 public class User {

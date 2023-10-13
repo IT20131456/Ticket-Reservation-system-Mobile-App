@@ -1,57 +1,61 @@
+/**
+ * This file contains the SignupRequest class, which is responsible for handling
+ * the signup request made by the user in the mobile app.
+ */
 package com.example.mobileapp.signup;
 
 public class SignupRequest {
-    private String Id;
-    private String NIC;
-    private String Contact;
-    private String Email;
-    private String PasswordHash;
+    private String id;
+    private String nic;
+    private String fullName;
+    private String contact;
+    private String passwordHash;
 
-    public SignupRequest(String id, String NIC, String contact, String email, String passwordHash) {
-        Id = id;
-        this.NIC = NIC;
-        Contact = contact;
-        Email = email;
-        PasswordHash = passwordHash;
+    public SignupRequest(String id, String nic, String fullName, String contact, String passwordHash) {
+        this.id = id;
+        this.nic = nic;
+        this.fullName = fullName;
+        this.contact = contact;
+        this.passwordHash = passwordHash;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getNIC() {
-        return NIC;
+    public String getNic() {
+        return nic;
     }
 
-    public void setNIC(String NIC) {
-        this.NIC = NIC;
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getContact() {
-        return Contact;
+        return contact;
     }
 
     public void setContact(String contact) {
-        Contact = contact;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
+        this.contact = contact;
     }
 
     public String getPasswordHash() {
-        return PasswordHash;
+        return passwordHash;
     }
 
     public void setPasswordHash(String passwordHash) {
-        PasswordHash = passwordHash;
+        this.passwordHash = passwordHash;
     }
 }
