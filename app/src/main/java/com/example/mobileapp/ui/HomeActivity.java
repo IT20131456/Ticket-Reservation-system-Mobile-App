@@ -12,6 +12,9 @@ import com.example.mobileapp.MainActivity;
 import com.example.mobileapp.R;
 import com.example.mobileapp.login.SessionManagement;
 
+/**
+* Reference - https://www.youtube.com/watch?v=ixRXEoGAEZM
+*/
 public class HomeActivity extends AppCompatActivity {
 
     @Override
