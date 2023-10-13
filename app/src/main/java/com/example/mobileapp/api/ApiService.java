@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 public interface ApiService {
 
     /**
-     * Get a list of all train schedules.
+     * Get a list of all train schedules .
      */
     @GET("api/TrainSchedule")
     Call<List<TrainSchedule>> getAllSchedules();

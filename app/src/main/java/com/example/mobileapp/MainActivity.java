@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         gotoRegisterBtn.setOnClickListener(v -> {
-            // Create an Intent to navigate to SignupActivity
+            //  Create an Intent to navigate to SignupActivity
             Intent intent = new Intent(MainActivity.this, SignupActivity.class);
             startActivity(intent);
         });
