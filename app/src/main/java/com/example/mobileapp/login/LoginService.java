@@ -1,3 +1,6 @@
+/**
+ * This file contains the implementation of the LoginService class, which is responsible for handling user login functionality.
+ */
 package com.example.mobileapp.login;
 
 import retrofit2.Call;

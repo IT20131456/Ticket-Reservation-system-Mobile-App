@@ -1,10 +1,6 @@
-/**
- * This class represents a request to update a user's profile information.
- * It is used in the Ticket Reservation System mobile app.
- */
 package com.example.mobileapp.userProfile;
 
-public class UserProfileUpdateRequest {
+public class UserProfileCancelResponse {
     String id;
     String fullName;
     String nic;
@@ -12,8 +8,9 @@ public class UserProfileUpdateRequest {
     String email;
     String address;
     String accountStatus;
+    String passwordHash;
 
-    public UserProfileUpdateRequest(String id, String fullName, String nic, String contact, String email, String address, String accountStatus) {
+    public UserProfileCancelResponse(String id, String fullName, String nic, String contact, String email, String address, String accountStatus, String passwordHash) {
         this.id = id;
         this.fullName = fullName;
         this.nic = nic;
@@ -21,6 +18,7 @@ public class UserProfileUpdateRequest {
         this.email = email;
         this.address = address;
         this.accountStatus = accountStatus;
+        this.passwordHash = passwordHash;
     }
 
     public String getId() {
@@ -77,5 +75,13 @@ public class UserProfileUpdateRequest {
 
     public void setAccountStatus(String accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }

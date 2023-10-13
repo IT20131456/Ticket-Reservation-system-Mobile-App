@@ -1,5 +1,13 @@
 package com.example.mobileapp.userProfile;
 
+/**
+ * UserProfileResponse represents a user profile response from the server.
+ *
+ * This class contains all of the information about a user, such as their ID, full name, NIC, contact, email, address, account status, and password hash.
+ *
+ * The UserProfileResponse class can be used to parse and deserialize JSON responses from the server. It can also be used to create UserProfile objects.
+ */
+
 public class UserProfileResponse {
     String id;
     String fullName;

@@ -1,3 +1,6 @@
+/**
+ * This package contains classes related to the signup functionality of the mobile application.
+ */
 package com.example.mobileapp.signup;
 
 import android.util.Log;

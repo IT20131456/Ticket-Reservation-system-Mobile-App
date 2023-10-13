@@ -1,5 +1,13 @@
 package com.example.mobileapp.userProfile;
 
+/**
+ * UserProfile represents a user profile in the system.
+ *
+ * This class contains all of the information about a user, such as their ID, full name, NIC, contact, email, address, account status, and password hash.
+ *
+ * The UserProfile class can be used to create, read, update, and delete user profiles. It can also be used to authenticate users and authorize their access to the system.
+ */
+
 public class UserProfile {
     String id;
     String fullName;

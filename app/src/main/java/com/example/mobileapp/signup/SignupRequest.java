@@ -1,3 +1,7 @@
+/**
+ * This file contains the SignupRequest class, which is responsible for handling
+ * the signup request made by the user in the mobile app.
+ */
 package com.example.mobileapp.signup;
 
 public class SignupRequest {
