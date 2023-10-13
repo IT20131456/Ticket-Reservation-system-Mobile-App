@@ -1,3 +1,6 @@
+/**
+ * This class represents the response received after updating a user's profile.
+ */
 package com.example.mobileapp.userProfile;
 
 import com.google.gson.annotations.SerializedName;

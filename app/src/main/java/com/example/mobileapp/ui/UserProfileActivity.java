@@ -22,6 +22,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * UserProfileActivity is the activity that allows users to view and update their profile information.
+ *
+ * This activity displays the user's profile information, such as NIC, full name, contact, email, and address.
+ * The user can update their profile information by entering the new information in the EditText fields and clicking the "Update Profile" button.
+ *
+ * When the user clicks the "Update Profile" button, the activity validates the user input and then updates the user's profile information on the server.
+ * If the profile information update is successful, the activity displays a success message to the user and redirects them to the HomeActivity.
+ * Otherwise, the activity displays an error message to the user.
+ */
+
 public class UserProfileActivity extends AppCompatActivity {
 
     private String userObjectId;
@@ -32,6 +43,7 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button updateUserProfileButton = findViewById(R.id.btn_update_user_profile);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button cancelUserProfileButton = findViewById(R.id.btn_user_cancel);
 
         retrieveUserData();
 
@@ -41,7 +53,19 @@ public class UserProfileActivity extends AppCompatActivity {
                 updateUserData();
             }
         });
+
+        cancelUserProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelUserProfile();
+            }
+        });
     }
+
+    private void cancelUserProfile() {
+
+    }
+
 
     private void retrieveUserData() {
     // Get the user input NIC from the Session

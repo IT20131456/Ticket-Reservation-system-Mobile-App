@@ -1,3 +1,7 @@
+/**
+ * This file contains the definition of the LoginResponse class, which is used to represent the response
+ * received from the server after attempting to log in.
+ */
 package com.example.mobileapp.login;
 
 import com.google.gson.annotations.SerializedName;

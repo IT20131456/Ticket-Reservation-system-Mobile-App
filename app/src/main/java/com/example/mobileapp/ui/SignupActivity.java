@@ -18,6 +18,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * SignupActivity is the activity that allows users to sign up for an account.
+ *
+ * This activity displays a registration form with the required fields for creating a new account, such as NIC, full name, contact, and password.
+ * When the user clicks the "Sign Up" button, the activity validates the user input and then creates a new account on the server.
+ *
+ * If the account creation is successful, the activity redirects the user to the LoginActivity. Otherwise, the activity displays an error message to the user.
+ */
+
 public class SignupActivity extends AppCompatActivity {
 
     @Override
