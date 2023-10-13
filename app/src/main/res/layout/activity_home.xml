@@ -6,25 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeActivity">
 
-    <TextView
-        android:id="@+id/helloWorldTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/viewAllSchedulesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="144dp"
         android:text="@string/view_all_schedules_temp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helloWorldTextView" />
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_logout"
@@ -42,12 +33,12 @@
         android:id="@+id/logged_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="MyUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helloWorldTextView" />
+        tools:layout_editor_absoluteY="392dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/viewAllBookingsButton"
@@ -56,8 +47,10 @@
         android:text="View All Bookings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewAllSchedulesButton" />
+        app:layout_constraintTop_toBottomOf="@+id/viewAllSchedulesButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_my_profile"

@@ -25,6 +25,8 @@ import retrofit2.Response;
  * When the user clicks the "Sign Up" button, the activity validates the user input and then creates a new account on the server.
  *
  * If the account creation is successful, the activity redirects the user to the LoginActivity. Otherwise, the activity displays an error message to the user.
+ *
+ * Reference - https://www.youtube.com/watch?v=04bzIg3Xuvg
  */
 
 public class SignupActivity extends AppCompatActivity {

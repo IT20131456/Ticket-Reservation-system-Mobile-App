@@ -6,6 +6,9 @@ package com.example.mobileapp.login;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Reference - https://www.youtube.com/watch?v=BXejFpaEwRc
+ */
 public class SessionManagement {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;

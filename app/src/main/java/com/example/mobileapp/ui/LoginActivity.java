@@ -29,6 +29,8 @@ import retrofit2.Response;
  * When the user clicks the "Login" button, the activity validates the user input and then calls the login API.
  *
  * If the login is successful, the activity redirects the user to the HomeActivity. Otherwise, the activity displays an error message to the user.
+ *
+ * Reference - https://www.youtube.com/watch?v=04bzIg3Xuvg
  */
 
 public class LoginActivity extends AppCompatActivity {
