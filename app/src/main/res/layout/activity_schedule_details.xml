@@ -183,29 +183,6 @@
                 android:layout_below="@id/scheduleDetailsAvailableClassesLabelTextView"
                 android:textSize="18sp" />
         </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/scheduleDetailsAvailableSeatsLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="10dp"
-                android:text="@string/available_seats_temp_value"
-                android:layout_below="@id/scheduleDetailsAvailableClassesTextView"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/scheduleDetailsAvailableSeatsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="10dp"
-                android:text=""
-                android:layout_below="@id/scheduleDetailsAvailableSeatsLabelTextView"
-                android:textSize="18sp" />
-        </TableRow>
     </TableLayout>
 
     <Button

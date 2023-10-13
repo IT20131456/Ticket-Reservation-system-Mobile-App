@@ -22,6 +22,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Activity class for displaying and confirming booking details updates or cancellations.
+ */
 public class BookingUpdateSummaryActivity extends AppCompatActivity {
 
     private TextView trainNameTextView, trainRouteTextView,
@@ -66,8 +69,10 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
 
         if (type.equals("update")) {
             confirmationText.setText("Please check and confirm the changes");
+        } else if (type.equals("cancel")) {
+            confirmationText.setText("Once cancelled, you cannot re-activate the booking");
         } else {
-            confirmationText.setText("Once removed, you cannot reactivate a booking");
+            confirmationText.setText("Once removed, you cannot recover booking details");
         }
         backButton.setText("< Back");
 
@@ -79,6 +84,7 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
             }
         });
 
+        // Handling confirmation button and make the API call
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,24 +99,23 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
                 ApiService apiService = retrofit.create(ApiService.class);
 
 
-                if (type.equals("update")) {
+                if (type.equals("update") || type.equals("cancel")) {
                     // Make the PUT request
                     Call<Void> call = apiService.updateReservation(reservation.getId(), reservation);
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful()) {
-                                // Handle success (e.g., display a success message)
+                                // Handle success
                                 Toast.makeText(BookingUpdateSummaryActivity.this, "Updated successfully!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(BookingUpdateSummaryActivity.this, HomeActivity.class);
                                 startActivity(intent);
 
                             } else {
-                                // Handle error (e.g., display an error message)
+                                // Handle error
                                 Toast.makeText(BookingUpdateSummaryActivity.this, "Failed to update reservation.", Toast.LENGTH_SHORT).show();
                                 Log.e("Reservation", "Failed to book ticket. HTTP error code: " + response.code());
 
-                                // You can also log the error response body if needed
                                 try {
                                     String errorBody = response.errorBody().string();
                                     Log.e("Reservation", "Error response body: " + errorBody);
@@ -122,7 +127,7 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            // Handle failure (e.g., display an error message)
+                            // Handle failure
                             Log.e("Reservation", "onFailure: " + t.getMessage());
                             Toast.makeText(BookingUpdateSummaryActivity.this, "Failed to update the reservation.", Toast.LENGTH_SHORT).show();
                         }
@@ -134,17 +139,16 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful()) {
-                                // Handle success (e.g., display a success message)
+                                // Handle success ]
                                 Toast.makeText(BookingUpdateSummaryActivity.this, "Removed successfully!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(BookingUpdateSummaryActivity.this, HomeActivity.class);
                                 startActivity(intent);
 
                             } else {
-                                // Handle error (e.g., display an error message)
+                                // Handle error
                                 Toast.makeText(BookingUpdateSummaryActivity.this, "Failed to remove reservation.", Toast.LENGTH_SHORT).show();
                                 Log.e("Reservation", "Failed to remove reservation. HTTP error code: " + response.code());
 
-                                // You can also log the error response body if needed
                                 try {
                                     String errorBody = response.errorBody().string();
                                     Log.e("Reservation", "Error response body: " + errorBody);
@@ -156,7 +160,7 @@ public class BookingUpdateSummaryActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            // Handle failure (e.g., display an error message)
+                            // Handle failure
                             Log.e("Reservation", "onFailure: " + t.getMessage());
                             Toast.makeText(BookingUpdateSummaryActivity.this, "Failed to remove the reservation.", Toast.LENGTH_SHORT).show();
                         }

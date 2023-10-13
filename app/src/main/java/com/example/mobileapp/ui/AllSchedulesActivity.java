@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.mobileapp.R;
 import com.example.mobileapp.adapter.ScheduleAdapter;
@@ -23,6 +24,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Activity class for displaying a list of train schedules and enabling search functionality.
+ */
 public class AllSchedulesActivity extends AppCompatActivity {
 
     private ListView scheduleListView;
@@ -58,7 +62,6 @@ public class AllSchedulesActivity extends AppCompatActivity {
             public void onResponse(Call<List<TrainSchedule>> call, Response<List<TrainSchedule>> response) {
                 Log.i("TrainInfo", "After on response");
                 if (response.isSuccessful() && response.body() != null) {
-                    // Data retrieval was successful
                     Log.i("TrainInfo", "Success Case");
                     scheduleList = response.body();
                     adapter = new ScheduleAdapter(AllSchedulesActivity.this, R.layout.list_item_schedule, scheduleList);
@@ -80,16 +83,14 @@ public class AllSchedulesActivity extends AppCompatActivity {
 
                 } else {
                     Log.i("TrainInfo", "Failed Case");
-                    // Handle error if the API call was not successful
-                    // You can display an error message or take appropriate action here
+                    Toast.makeText(AllSchedulesActivity.this, "Failed to load.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<TrainSchedule>> call, Throwable t) {
                 Log.i("TrainInfo", "On failure: " + t.getMessage());
-                // Handle failure to make the API call
-                // You can display an error message or take appropriate action here
+                Toast.makeText(AllSchedulesActivity.this, "Failed to load.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,10 +101,10 @@ public class AllSchedulesActivity extends AppCompatActivity {
             }
         });
 
+        // Handle search view
         schedulesSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // Handle the search query submission (if needed)
                 return false;
             }
 
@@ -118,7 +119,7 @@ public class AllSchedulesActivity extends AppCompatActivity {
         });
     }
 
-    // Add this method to perform the search
+    // Method to perform the search
     private void performSearch(String query) {
         List<TrainSchedule> searchResults = new ArrayList<>();
         for (TrainSchedule schedule : scheduleList) {

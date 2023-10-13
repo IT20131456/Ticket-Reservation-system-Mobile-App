@@ -5,25 +5,36 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobileapp.R;
 import com.example.mobileapp.data.model.Reservation;
 import com.example.mobileapp.data.model.TrainSchedule;
+import com.example.mobileapp.login.SessionManagement;
+import com.example.mobileapp.utils.Utils;
 
 import org.bson.types.ObjectId;
-import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.UUID;
 
+/**
+ * Activity class for handling the train booking process, including selecting travel details and making reservations.
+ */
 public class BookingActivity extends AppCompatActivity {
+
+    private String selectedFrom = "";
+    private String selectedTo = "";
+    private String selectedClass = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +48,13 @@ public class BookingActivity extends AppCompatActivity {
         // Format the current date as a string in the desired format
         String formattedDate = sdf.format(currentDate);
 
+        SessionManagement sessionManagement = new SessionManagement(BookingActivity.this);
+        String nic = sessionManagement.getSessionNIC();
+
         TextView scheduleDetailsTextView, trainFromTextView, trainToTextView, nicTextView, expandCollapseButton;
-        EditText seatNumberEditText, fromEditText, toEditText, classesEditText, noOfSeatsEditText;
+        EditText noOfSeatsEditText, seatNumberEditText;
         Button continueButton, backButton;
+        Spinner fromSpinner, toSpinner, classesSpinner;
 
         // Initialize UI elements
         scheduleDetailsTextView = findViewById(R.id.bookingTrainNameTextView);
@@ -47,9 +62,9 @@ public class BookingActivity extends AppCompatActivity {
         trainToTextView = findViewById(R.id.bookingArrTextView);
         nicTextView = findViewById(R.id.bookingNICEditText);
         seatNumberEditText = findViewById(R.id.bookingSeatNumberEditText);
-        fromEditText = findViewById(R.id.bookingFromEditText);
-        toEditText = findViewById(R.id.bookingToEditText);
-        classesEditText = findViewById(R.id.bookingClassEditText);
+        fromSpinner = findViewById(R.id.bookingFromSpinner);
+        toSpinner = findViewById(R.id.bookingToSpinner);
+        classesSpinner = findViewById(R.id.bookingClassSpinner);
         noOfSeatsEditText = findViewById(R.id.bookingSeatNumberEditText);
         continueButton = findViewById(R.id.bookingContinueButton);
         backButton = findViewById(R.id.bookingBackButton);
@@ -60,14 +75,62 @@ public class BookingActivity extends AppCompatActivity {
         // Retrieve schedule data passed from ScheduleActivity
         TrainSchedule selectedSchedule = getIntent().getParcelableExtra("schedule");
 
+        // Create ArrayAdapter for each Spinner
+        ArrayAdapter<String> fromAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, selectedSchedule.getIntermediate_stops());
+        ArrayAdapter<String> toAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, selectedSchedule.getIntermediate_stops());
+        ArrayAdapter<String> classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, selectedSchedule.getSeat_classes());
+
+        // Set the dropdown layout style for each Spinner
+        fromAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         // Display schedule details
+        nicTextView.setText(nic);
         scheduleDetailsTextView.setText(selectedSchedule.getTrain_name());
         trainFromTextView.setText(selectedSchedule.getDeparture_station() + ": " + selectedSchedule.getDeparture_time());
         trainToTextView.setText(selectedSchedule.getArrival_station() + ": " +selectedSchedule.getArrival_time());
-        fromEditText.setText(selectedSchedule.getDeparture_station());
-        toEditText.setText(selectedSchedule.getArrival_station());
-        classesEditText.setText(selectedSchedule.getSeat_classes().get(0));
         noOfSeatsEditText.setText("0");
+
+        fromSpinner.setAdapter(fromAdapter);
+        toSpinner.setAdapter(toAdapter);
+        classesSpinner.setAdapter(classesAdapter);
+
+        fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                selectedFrom = selectedSchedule.getIntermediate_stops().get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                selectedFrom = selectedSchedule.getDeparture_station();
+            }
+        });
+
+        toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                selectedTo = selectedSchedule.getIntermediate_stops().get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                selectedTo = selectedSchedule.getArrival_station();
+            }
+        });
+
+        classesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                selectedClass = selectedSchedule.getSeat_classes().get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                selectedClass = selectedSchedule.getSeat_classes().get(0);
+            }
+        });
 
         Reservation newReservation = new Reservation();
 
@@ -76,19 +139,19 @@ public class BookingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                newReservation.setReservation_number(getRandomNumber());
-                newReservation.setReference_id("200011222333"); // TODO: replace with the actual data
+                newReservation.setReservation_number(Utils.getRandomNumber());
+                newReservation.setReference_id(nic);
                 newReservation.setTrain_id(selectedSchedule.getTrain_number());
                 newReservation.setTrain_name(selectedSchedule.getTrain_name());
                 newReservation.setTravel_route(selectedSchedule.getDeparture_station() + " - " + selectedSchedule.getArrival_station());
-                newReservation.setFrom(fromEditText.getText().toString());
-                newReservation.setTo(toEditText.getText().toString());
+                newReservation.setFrom(selectedFrom);
+                newReservation.setTo(selectedTo);
 
-                int selectedClass = getTrainClass(classesEditText.getText().toString());
+                int selectedClassInInt = Utils.getTrainClassAsNumber(selectedClass);
                 int noOfTickets = Integer.parseInt(noOfSeatsEditText.getText().toString());
-                newReservation.setTicket_class(selectedClass);
+                newReservation.setTicket_class(selectedClassInInt);
                 newReservation.setNumber_of_tickets(noOfTickets);
-                newReservation.setTotal_price(getTotal(selectedClass, noOfTickets));
+                newReservation.setTotal_price(Utils.getTotal(selectedClassInInt, noOfTickets));
                 newReservation.setBooking_date(formattedDate);
                 if (expandCollapseButton.getText().toString().equals("Select a date")) {
                     newReservation.setReservation_date(formattedDate);
@@ -100,27 +163,19 @@ public class BookingActivity extends AppCompatActivity {
                 ObjectId objectId = new ObjectId();
 
                 newReservation.setId(objectId.toString());
-                Log.i("Reservation", "Id: " + newReservation.getId());
-                Log.i("Reservation", "Reservation No: " + newReservation.getReservation_number());
-                Log.i("Reservation", "Reference ID: " + newReservation.getReference_id());
-                Log.i("Reservation", "Train ID: " + newReservation.getTrain_id());
-                Log.i("Reservation", "Train Name: " + newReservation.getTrain_name());
-                Log.i("Reservation", "Travel Route: " + newReservation.getTravel_route());
-                Log.i("Reservation", "From: " + newReservation.getFrom());
-                Log.i("Reservation", "To: " + newReservation.getTo());
-                Log.i("Reservation", "Ticket Class: " + newReservation.getTicket_class());
-                Log.i("Reservation", "Number of Tickets: " + newReservation.getNumber_of_tickets());
-                Log.i("Reservation", "Total Price: " + newReservation.getTotal_price());
-                Log.i("Reservation", "Booking Date: " + newReservation.getBooking_date());
-                Log.i("Reservation", "Reservation Date: " + newReservation.getReservation_date());
 
-                // Create an Intent to navigate to BookingActivity
-                Intent intent = new Intent(BookingActivity.this, BookingConfirmationActivity.class);
-                // Pass the selected schedule data to BookingActivity
-                intent.putExtra("schedule", selectedSchedule);
-                intent.putExtra("reservation", newReservation);
+                String invalidData = Utils.validateData(newReservation, selectedSchedule);
+                if(invalidData.equals("")) {
+                    // Create an Intent to navigate to BookingActivity
+                    Intent intent = new Intent(BookingActivity.this, BookingConfirmationActivity.class);
+                    // Pass the selected schedule data to BookingActivity
+                    intent.putExtra("schedule", selectedSchedule);
+                    intent.putExtra("reservation", newReservation);
 
-                startActivity(intent);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(BookingActivity.this, invalidData, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -134,29 +189,16 @@ public class BookingActivity extends AppCompatActivity {
         });
     }
 
-    private int getTotal(int selectedClass, int noOfTickets) {
-        if(selectedClass == 1) {
-            return 1000 * noOfTickets;
-        } else if (selectedClass == 2) {
-            return 200 * noOfTickets;
-        } else {
-            return 30 * noOfTickets;
-        }
-    }
-
-    private int getTrainClass(String toString) {
-        if (toString.equals("First-Class")) {
-            return 1;
-        } else if (toString.equals("Second-Class")) {
-            return 2;
-        } else {
-            return 3;
-        }
-    }
-
+    // Function to handle the date-picker validation and visibility
     public void toggleDatePickerVisibility(View view) {
         DatePicker datePicker = findViewById(R.id.bookingDatePicker);
         TextView expandCollapseButton = findViewById(R.id.bookingExpandCollapseButton);
+
+        // Get the current date
+        Calendar currentDate = Calendar.getInstance();
+
+        // Set the minimum date for the DatePicker to the current date
+        datePicker.setMinDate(currentDate.getTimeInMillis());
 
         int year = datePicker.getYear();
         int month = datePicker.getMonth(); // Months are zero-based (0 = January)
@@ -174,17 +216,5 @@ public class BookingActivity extends AppCompatActivity {
         if (year != 0 && month != 0 && dayOfMonth != 0) {
             expandCollapseButton.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         }
-    }
-
-    public String getRandomNumber() {
-        // Generate a random double between 0 (inclusive) and 1 (exclusive)
-        double randomDouble = Math.random();
-
-        // Generate a random number between 1 and 10000
-        int min = 1;
-        int max = 10000;
-        int randomNumber = (int) (Math.random() * (max - min + 1)) + min;
-
-        return Integer.toString(randomNumber);
     }
 }

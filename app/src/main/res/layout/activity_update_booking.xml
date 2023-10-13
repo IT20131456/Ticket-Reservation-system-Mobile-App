@@ -130,12 +130,17 @@
                     android:text="From: "
                     android:textSize="18sp"
                     android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/updateBookingFromEditText"
+<!--                <EditText-->
+<!--                    android:id="@+id/updateBookingFromEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:hint="station"/>-->
+                <Spinner
+                    android:id="@+id/updateBookingFromSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="20dp"
-                    android:hint="station"/>
+                    android:layout_marginLeft="20dp"/>
             </TableRow>
             <TableRow>
                 <TextView
@@ -145,13 +150,18 @@
                     android:text="To: "
                     android:textSize="18sp"
                     android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/updateBookingToEditText"
+<!--                <EditText-->
+<!--                    android:id="@+id/updateBookingToEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:hint="station"-->
+<!--                    android:inputType="text"/>-->
+                <Spinner
+                    android:id="@+id/updateBookingToSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="20dp"
-                    android:hint="station"
-                    android:inputType="text"/>
+                    android:layout_marginLeft="20dp"/>
             </TableRow>
             <TableRow>
                 <TextView
@@ -161,12 +171,17 @@
                     android:text="Class: "
                     android:textSize="18sp"
                     android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/updateBookingClassEditText"
+<!--                <EditText-->
+<!--                    android:id="@+id/updateBookingClassEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:hint="1, 2, or 3"/>-->
+                <Spinner
+                    android:id="@+id/updateBookingClassSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="20dp"
-                    android:hint="1, 2, or 3"/>
+                    android:layout_marginLeft="20dp"/>
             </TableRow>
             <TableRow>
                 <TextView
@@ -192,13 +207,21 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/updateBookingFormTableLayout"
             android:padding="10dp"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:id="@+id/updateBookingButtonGroup">
 
             <Button
                 android:id="@+id/removeBookingButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Remove"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/cancelBookingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
                 android:layout_marginEnd="16dp" />
 
             <Button
@@ -210,6 +233,14 @@
                 android:layout_centerHorizontal="true" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/infoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_below="@id/updateBookingButtonGroup"/>
 
     </RelativeLayout>
 </RelativeLayout>

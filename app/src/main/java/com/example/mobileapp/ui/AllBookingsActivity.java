@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -22,6 +21,8 @@ import com.example.mobileapp.R;
 import com.example.mobileapp.adapter.BookingAdapter;
 import com.example.mobileapp.api.ApiService;
 import com.example.mobileapp.data.model.Reservation;
+import com.example.mobileapp.login.SessionManagement;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,6 +33,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This activity allows the user to view, filter, and search through their train reservations.
+ * It retrieves the user's reservations from the API, displays them in a list view, and provides
+ * options to filter active reservations and search for specific reservations.
+ */
 public class AllBookingsActivity extends AppCompatActivity {
     private ListView bookingListView;
     private SwitchCompat toggleButton;
@@ -46,6 +52,8 @@ public class AllBookingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_bookings);
 
+        Log.i("TrainInfo", "onCreate: AllBookings");
+
         backButton = findViewById(R.id.allBookingsBackButton);
         testingLabel = findViewById(R.id.TestingLabel);
         bookingListView = findViewById(R.id.bookingListView);
@@ -54,9 +62,10 @@ public class AllBookingsActivity extends AppCompatActivity {
 
         backButton.setText("< Back");
 
-        String nic = "200011222333";
+        // Session management to retrieve user NIC
+        SessionManagement sessionManagement = new SessionManagement(AllBookingsActivity.this);
+        String nic = sessionManagement.getSessionNIC();
 
-        Log.i("TrainInfo", "onCreate: AllBookings");
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,26 +73,21 @@ public class AllBookingsActivity extends AppCompatActivity {
             }
         });
 
-        // Initialize Retrofit
+        // Initialize Retrofit for API calls
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:5041/") // Replace with your API base URL
+                .baseUrl("http://10.0.2.2:5041/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         // Create an instance of the ApiService interface
         ApiService apiService = retrofit.create(ApiService.class);
-        Log.i("TrainInfo", "Before call");
 
         // Make an API call to fetch reservations
         Call<List<Reservation>> call = apiService.getAllBookings(nic); // Replace with your API call
-        Log.i("TrainInfo", "After call");
         call.enqueue(new Callback<List<Reservation>>() {
             @Override
             public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
-                Log.i("TrainInfo", "After on response");
                 if (response.isSuccessful() && response.body() != null) {
-                    // Data retrieval was successful
-                    Log.i("TrainInfo", "Success Case");
                     bookingList = response.body();
                     bookingAdapter = new BookingAdapter(AllBookingsActivity.this, R.layout.booking_card, bookingList);
                     bookingListView.setAdapter(bookingAdapter);
@@ -105,7 +109,6 @@ public class AllBookingsActivity extends AppCompatActivity {
                     Toast.makeText(AllBookingsActivity.this, "Failed to load.", Toast.LENGTH_SHORT).show();
                     Log.e("TrainInfo", "Failed get bookings. HTTP error code: " + response.code());
 
-                    // You can also log the error response body if needed
                     try {
                         String errorBody = response.errorBody().string();
                         Log.e("TrainInfo", "Error response body: " + errorBody);
@@ -118,11 +121,11 @@ public class AllBookingsActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Reservation>> call, Throwable t) {
                 Log.i("TrainInfo", "On failure: " + t.getMessage());
-                // Handle failure to make the API call
-                // display an error message or take appropriate action here
+                Log.e("TrainInfo", "Failed get bookings.");
             }
         });
 
+        // Handle filtering active bookings
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -137,6 +140,7 @@ public class AllBookingsActivity extends AppCompatActivity {
             }
         });
 
+        // Handle the search operations
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -156,19 +160,33 @@ public class AllBookingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Filters the list of reservations to display only active bookings.
+     */
     private void filterActiveBookings() {
         List<Reservation> activeBookings = new ArrayList<>();
+
+        // Iterate through the bookingList and add active bookings to activeBookings list
         for (Reservation reservation : bookingList) {
             if ("Active".equalsIgnoreCase(reservation.getStatus())) {
                 activeBookings.add(reservation);
             }
         }
+
+        // Update the bookingAdapter to display the filtered active bookings
         bookingAdapter = new BookingAdapter(AllBookingsActivity.this, R.layout.booking_card, activeBookings);
         bookingListView.setAdapter(bookingAdapter);
     }
 
+    /**
+     * Performs a search on reservations based on a user-provided query and updates the display accordingly.
+     *
+     * @param query The search query entered by the user.
+     */
     private void performSearch(String query) {
         List<Reservation> searchResults = new ArrayList<>();
+
+        // Iterate through the bookingList and add reservations matching the query to searchResults
         for (Reservation reservation : bookingList) {
             if (reservation.getReservation_number().toLowerCase().contains(query.toLowerCase())
                     || reservation.getFrom().toLowerCase().contains(query.toLowerCase())
@@ -176,6 +194,8 @@ public class AllBookingsActivity extends AppCompatActivity {
                 searchResults.add(reservation);
             }
         }
+
+        // Update the bookingAdapter to display the search results
         bookingAdapter = new BookingAdapter(AllBookingsActivity.this, R.layout.booking_card, searchResults);
         bookingListView.setAdapter(bookingAdapter);
     }
