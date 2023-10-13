@@ -4,13 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mobileapp.R;
 import com.example.mobileapp.data.model.TrainSchedule;
 
+import java.util.ArrayList;
+
+/**
+ * Activity class for displaying details of a train schedule and providing an option to book a reservation.
+ */
 public class ScheduleDetailsActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +25,7 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_details);
 
-        TextView trainNameTextView, descriptionTextView, typeTextView, startingPointTextView, destinationTextView, durationTextView, stopsTextView, availableClassesTextView, seatsTextView;
+        TextView trainNameTextView, descriptionTextView, typeTextView, startingPointTextView, destinationTextView, durationTextView, stopsTextView, availableClassesTextView;
         Button bookButton, backButton;
 
         // Initialize UI elements
@@ -30,12 +37,23 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         durationTextView = findViewById(R.id.scheduleDetailsDurationTextView);
         stopsTextView = findViewById(R.id.scheduleDetailsStationsTextView);
         availableClassesTextView = findViewById(R.id.scheduleDetailsAvailableClassesTextView);
-        seatsTextView = findViewById(R.id.scheduleDetailsAvailableSeatsTextView);
         bookButton = findViewById(R.id.scheduleDetailsBookButton);
         backButton = findViewById(R.id.scheduleDetailsBackButton);
 
         // Retrieve schedule data passed from AllSchedulesActivity
         TrainSchedule selectedSchedule = getIntent().getParcelableExtra("schedule");
+
+        // Converting the list to comma separated string
+        String stops = TextUtils.join(", ", selectedSchedule.getIntermediate_stops());
+
+        ArrayList<String> classesWithSeats = new ArrayList<>();
+        // Getting string list for class and separate seat count
+        for (int i = 0; i < selectedSchedule.getSeat_classes().size(); i++) {
+            String item = selectedSchedule.getSeat_classes().get(i) + ": " + selectedSchedule.getNumber_of_seats().get(i);
+            classesWithSeats.add(item);
+        }
+
+        String classes = TextUtils.join(", ", classesWithSeats);
 
         // Display schedule details
         trainNameTextView.setText(selectedSchedule.getTrain_name());
@@ -44,9 +62,8 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         startingPointTextView.setText(selectedSchedule.getDeparture_station() + ": " + selectedSchedule.getDeparture_time());
         destinationTextView.setText(selectedSchedule.getArrival_station() + ": " + selectedSchedule.getArrival_time());
         durationTextView.setText(selectedSchedule.getTravel_duration());
-        stopsTextView.setText(selectedSchedule.getIntermediate_stops().toString());
-        availableClassesTextView.setText(selectedSchedule.getSeat_classes().toString());
-        seatsTextView.setText(selectedSchedule.getNumber_of_seats().toString());
+        stopsTextView.setText(stops);
+        availableClassesTextView.setText(classes);
 
         backButton.setText("< Back");
 

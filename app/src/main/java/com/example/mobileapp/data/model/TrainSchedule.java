@@ -6,26 +6,37 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model class representing train schedule information.
+ * Implements Parcelable to allow for object transfer between components.
+ */
 public class TrainSchedule implements Parcelable {
-    private String id;
-    private String train_number;
-    private String train_name;
-    private String train_type;
-    private String train_description;
-    private String departure_station;
-    private String arrival_station;
-    private String departure_time;
-    private String arrival_time;
-    private String travel_duration;
-    private List<String> intermediate_stops;
-    private List<String> seat_classes;
-    private List<String> number_of_seats;
-    private Integer isActive;
+    private String id;  // Unique identifier
+    private String train_number;  // Train number (Unique)
+    private String train_name;  // Train name
+    private String train_type;  // Train type
+    private String train_description;  // Train description
+    private String departure_station;  // Departure station
+    private String arrival_station;  // Arrival station
+    private String departure_time;  // Departure time
+    private String arrival_time;  // Arrival time
+    private String travel_duration;  // Duration of the travel
+    private List<String> intermediate_stops;  // List of intermediate stops
+    private List<String> seat_classes;  // List of available seat classes
+    private List<String> number_of_seats;  // List of the number of seats available for each class
+    private Integer isActive;  // Active status
 
     // Constructors, getters, setters, and Parcelable implementation
+
+    /**
+     * Default constructor.
+     */
     public TrainSchedule() {
     }
 
+    /**
+     * Parameterized constructor to initialize a TrainSchedule object.
+     */
     public TrainSchedule(String id, String train_number, String train_name, String train_type, String train_description, String departure_station, String arrival_station, String departure_time, String arrival_time, String travel_duration, List<String> intermediate_stops, List<String> seat_classes, List<String> number_of_seats, Integer isActive) {
         this.id = id;
         this.train_number = train_number;
@@ -45,6 +56,7 @@ public class TrainSchedule implements Parcelable {
 
     // Parcelable implementation
     protected TrainSchedule(Parcel in) {
+        // Read data from Parcel and assign to class members
         id = in.readString();
         train_number = in.readString();
         train_name = in.readString();
@@ -73,22 +85,26 @@ public class TrainSchedule implements Parcelable {
     public static final Creator<TrainSchedule> CREATOR = new Creator<TrainSchedule>() {
         @Override
         public TrainSchedule createFromParcel(Parcel in) {
+            // Create a TrainSchedule object from a Parcel
             return new TrainSchedule(in);
         }
 
         @Override
         public TrainSchedule[] newArray(int size) {
+            // Create an array of TrainSchedule objects
             return new TrainSchedule[size];
         }
     };
 
     @Override
     public int describeContents() {
+        // Required method for Parcelable, but not used in this case
         return 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        // Write class members to Parcel for data transfer
         dest.writeString(id);
         dest.writeString(train_number);
         dest.writeString(train_name);

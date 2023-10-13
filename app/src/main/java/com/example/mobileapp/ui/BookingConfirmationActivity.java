@@ -23,6 +23,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Activity class for displaying and confirming train booking details, and making the final reservation.
+ */
 public class BookingConfirmationActivity extends AppCompatActivity {
 
     private TextView trainNameTextView, trainTypeTextView, durationTextView,
@@ -103,22 +106,21 @@ public class BookingConfirmationActivity extends AppCompatActivity {
                 ApiService apiService = retrofit.create(ApiService.class);
 
                 // Make the POST request
-                Call<Void> call = apiService.bookTicket(reservation); // Assuming 'reservation' contains the data to be sent
+                Call<Void> call = apiService.bookTicket(reservation);
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
-                            // Handle success (e.g., display a success message)
+                            // Handle success
                             Toast.makeText(BookingConfirmationActivity.this, "Ticket booked successfully!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(BookingConfirmationActivity.this, HomeActivity.class);
                             startActivity(intent);
 
                         } else {
-                            // Handle error (e.g., display an error message)
+                            // Handle error
                             Toast.makeText(BookingConfirmationActivity.this, "Failed to book ticket.", Toast.LENGTH_SHORT).show();
                             Log.e("Reservation", "Failed to book ticket. HTTP error code: " + response.code());
 
-                            // You can also log the error response body if needed
                             try {
                                 String errorBody = response.errorBody().string();
                                 Log.e("Reservation", "Error response body: " + errorBody);
@@ -130,16 +132,12 @@ public class BookingConfirmationActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        // Handle failure (e.g., display an error message)
+                        // Handle failure
                         Log.e("Reservation", "onFailure: " + t.getMessage());
                         Toast.makeText(BookingConfirmationActivity.this, "Failed to book ticket.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
-
-
     }
-
-
 }
