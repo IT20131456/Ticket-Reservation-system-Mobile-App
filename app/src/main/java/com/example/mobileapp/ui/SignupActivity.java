@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobileapp.MainActivity;
 import com.example.mobileapp.R;
 import com.example.mobileapp.signup.SignupRequest;
 import com.example.mobileapp.signup.SignupResponse;
@@ -61,10 +62,19 @@ public class SignupActivity extends AppCompatActivity {
         if (userNICInput.isEmpty() || userFullNameInput.isEmpty() || userContactInput.isEmpty() || userPasswordInput.isEmpty() || userConformPasswordInput.isEmpty() ) {
             Toast.makeText(this, "Please enter all required fields", Toast.LENGTH_SHORT).show();
             return;
+        } else if (userNICInput.length() != 10 && userNICInput.length() != 12) {
+            Toast.makeText(this, "NIC number must be 10 or 12 characters long", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (userContactInput.length() != 10) {
+            Toast.makeText(this, "Contact no must be 10 numbers", Toast.LENGTH_SHORT).show();
+            return;
+        } else if(!userPasswordInput.equals(userConformPasswordInput)) {
+            Toast.makeText(this, "Password and Conform Password need to same", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         // Create a SignupRequest object
-        SignupRequest signupRequest = new SignupRequest(null,userNICInput,userFullNameInput,userContactInput,userPasswordInput);
+        SignupRequest signupRequest = new SignupRequest("",userNICInput,userFullNameInput,userContactInput,userPasswordInput, "Active");
 
         // Call the login API
         SignupServiceGenerator.create().signup(signupRequest).enqueue(new Callback<SignupResponse>() {
@@ -77,20 +87,20 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this, "Signup successful", Toast.LENGTH_SHORT).show();
 
                     // Redirect to the LoginActivity
-                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
                     // Signup failed
-                    Toast.makeText(SignupActivity.this, "Signup failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "NIC already exists", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<SignupResponse> call, Throwable t) {
                 // Login failed
-                Toast.makeText(SignupActivity.this, "Signup failed", Toast.LENGTH_SHORT).show();
-                Log.i("LoginInfo", String.valueOf(t));
+                Toast.makeText(SignupActivity.this, "Signup failed Error!", Toast.LENGTH_SHORT).show();
+                Log.i("SignupInfo", String.valueOf(t));
             }
         });
     }

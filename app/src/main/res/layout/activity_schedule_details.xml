@@ -192,7 +192,7 @@
         android:orientation="horizontal"
         android:layout_below="@id/scheduleDetailsTableLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="2dp"
         android:text="@string/book_temp"
         android:textSize="16sp"/>
 

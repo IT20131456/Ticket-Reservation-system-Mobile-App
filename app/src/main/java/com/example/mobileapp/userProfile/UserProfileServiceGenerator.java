@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * This class generates a Retrofit instance for the UserProfileService interface.
  */
 public class UserProfileServiceGenerator {
-    private static final String BASE_URL = "http://192.168.8.164:5041/";
+    private static final String BASE_URL = "http://10.0.2.2:5041/";
 
     /**
      * Creates a new instance of the UserProfileService interface using Retrofit.

@@ -1,12 +1,12 @@
 package com.example.mobileapp.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.mobileapp.MainActivity;
 import com.example.mobileapp.R;
@@ -22,15 +22,24 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Button viewAllSchedulesButton = findViewById(R.id.viewAllSchedulesButton);
-        Button viewAllBookingsButton = findViewById(R.id.viewAllBookingsButton);
-        Button viewUserProfileButton = findViewById(R.id.btn_my_profile);
-
-        TextView loggedUserTextView = findViewById(R.id.logged_user);
         SessionManagement sessionManagement = new SessionManagement(HomeActivity.this);
         String userName = sessionManagement.getSessionName();
         String userNIC = sessionManagement.getSessionNIC();
-        loggedUserTextView.setText("Hello " + userName + " NIC " + userNIC);
+
+        //Button viewAllSchedulesButton = findViewById(R.id.viewAllSchedulesButton);
+        //Button viewAllBookingsButton = findViewById(R.id.viewAllBookingsButton);
+        //Button viewUserProfileButton = findViewById(R.id.btn_my_profile);
+        //Button viewBookingButton = findViewById(R.id.btn_booking);
+
+        //TextView loggedUserTextView = findViewById(R.id.logged_user);
+        //loggedUserTextView.setText("Hello " + userName + " NIC " + userNIC);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView viewAllBookingsButton = findViewById(R.id.home_card_all_booking);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView viewAllSchedulesButton = findViewById(R.id.home_card_all_schedule);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView viewUserProfileButton = findViewById(R.id.card_home_my_profile);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView viewAddBookingsButton = findViewById(R.id.card_home_add_booking);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView viewSettingsButton = findViewById(R.id.card_home_setting);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView userLogoutButton = findViewById(R.id.card_home_logout);
 
 
         // Set an OnClickListener for the button
@@ -57,6 +66,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Create an Intent to navigate to UserProfileActivity
                 Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewAddBookingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to navigate to BookingActivity
+                Intent intent = new Intent(HomeActivity.this, AllSchedulesActivity.class);
                 startActivity(intent);
             }
         });

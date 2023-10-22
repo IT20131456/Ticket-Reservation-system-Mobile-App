@@ -125,6 +125,7 @@ public class TrainSchedule implements Parcelable {
 
         // Write numberOfSeats List
         dest.writeList(number_of_seats);
+
     }
 
     // Getters and Setters

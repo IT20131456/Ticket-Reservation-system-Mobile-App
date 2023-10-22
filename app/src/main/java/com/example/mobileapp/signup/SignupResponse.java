@@ -7,18 +7,18 @@ package com.example.mobileapp.signup;
 import com.google.gson.annotations.SerializedName;
 
 public class SignupResponse {
-    @SerializedName("StatusCode")
-    private String StatusCode;
+    @SerializedName("statusCode")
+    private String statusCode;
 
     public SignupResponse(String statusCode) {
-        StatusCode = statusCode;
+        this.statusCode = statusCode;
     }
 
     public String getStatusCode() {
-        return StatusCode;
+        return statusCode;
     }
 
     public void setStatusCode(String statusCode) {
-        StatusCode = statusCode;
+        this.statusCode = statusCode;
     }
 }
