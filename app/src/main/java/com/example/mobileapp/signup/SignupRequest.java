@@ -5,57 +5,67 @@
 package com.example.mobileapp.signup;
 
 public class SignupRequest {
-    private String id;
-    private String nic;
-    private String fullName;
-    private String contact;
-    private String passwordHash;
+    private String Id;
+    private String NIC;
+    private String FullName;
+    private String Contact;
+    private String PasswordHash;
+    private String accountStatus;
 
-    public SignupRequest(String id, String nic, String fullName, String contact, String passwordHash) {
-        this.id = id;
-        this.nic = nic;
-        this.fullName = fullName;
-        this.contact = contact;
-        this.passwordHash = passwordHash;
+    public SignupRequest(String id, String NIC, String fullName, String contact, String passwordHash, String accountStatus) {
+        Id = id;
+        this.NIC = NIC;
+        FullName = fullName;
+        Contact = contact;
+        PasswordHash = passwordHash;
+        this.accountStatus = accountStatus;
     }
 
     public String getId() {
-        return id;
+        return Id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        Id = id;
     }
 
-    public String getNic() {
-        return nic;
+    public String getNIC() {
+        return NIC;
     }
 
-    public void setNic(String nic) {
-        this.nic = nic;
+    public void setNIC(String NIC) {
+        this.NIC = NIC;
     }
 
     public String getFullName() {
-        return fullName;
+        return FullName;
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        FullName = fullName;
     }
 
     public String getContact() {
-        return contact;
+        return Contact;
     }
 
     public void setContact(String contact) {
-        this.contact = contact;
+        Contact = contact;
     }
 
     public String getPasswordHash() {
-        return passwordHash;
+        return PasswordHash;
     }
 
     public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+        PasswordHash = passwordHash;
+    }
+
+    public String getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
     }
 }

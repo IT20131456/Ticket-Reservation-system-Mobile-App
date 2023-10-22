@@ -36,7 +36,7 @@
         <ScrollView
             android:id="@+id/summaryScrollView"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="400dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/summaryTitle"
             android:isScrollContainer="true">
@@ -258,6 +258,6 @@
             android:orientation="horizontal"
             android:layout_below="@id/confirmationText"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="2dp"/>
     </RelativeLayout>
 </RelativeLayout>

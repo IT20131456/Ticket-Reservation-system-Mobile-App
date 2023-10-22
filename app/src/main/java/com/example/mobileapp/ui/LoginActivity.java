@@ -86,8 +86,14 @@ public class LoginActivity extends AppCompatActivity {
         //String userPasswordInput = "password";
 
         // Validate the user input
-        if (userIDInput.isEmpty() || userPasswordInput.isEmpty()) {
-            Toast.makeText(this, "Please enter all required fields", Toast.LENGTH_SHORT).show();
+        if (userIDInput.isEmpty()) {
+            Toast.makeText(this, "Please enter User ID", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (userPasswordInput.isEmpty()){
+            Toast.makeText(this, "Please enter Password", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (userIDInput.length() != 10 && userIDInput.length() != 12){
+            Toast.makeText(this, "Please enter correct NIC No", Toast.LENGTH_SHORT).show();
             return;
         }
 

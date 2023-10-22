@@ -2,17 +2,32 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/home_back_btn_user_profile"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/back_temp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:textStyle="bold" />
+
     <TextView
+        android:id="@+id/update_user_profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="User Profile"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="InvalidId" />
 
     <EditText
         android:id="@+id/user_full_name"
@@ -74,10 +89,17 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:text="Deactivate Profile" />
+            android:text="Deactivate Profile"/>
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/text_user_profile_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note : Account Inactive. You need to contact your Travel Agent to Active account"
+        android:textSize="18dp"
+        android:layout_margin="15dp"/>
 
 
 </LinearLayout>
